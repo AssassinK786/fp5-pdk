@@ -1,0 +1,6 @@
+ERROR: RuntimeError: Unable to open file: /home/fpga/pdks/fp5/digital/gds//klayout/cell_checks/MUX2X1.lvsdb (errno=2) in LayoutVsSchematic::write in Executable::cleanup
+  :/built-in-macros/_lvs_engine.rb:55:in `write'
+  :/built-in-macros/_lvs_engine.rb:55:in `_before_cleanup'
+  :/built-in-macros/_drc_engine.rb:3070:in `_finish'
+  :/built-in-macros/lvs_interpreters.lym:51:in `cleanup'
+LVS MATCH: MUX2X1

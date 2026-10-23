@@ -1,0 +1,7 @@
+# FP5: interconnect RC (MOSIS lot T89Y, median lot). Sheet R ohm/sq; caps aF/um^2 and aF/um (fringe) to substrate.
+# layer  Rsh   Area_sub  Fringe_sub  min_width_um(SUBM lambda 0.3)  -> C per um at min width (fF/um), R per um (ohm/um)
+metal1   0.09  28        52          0.9    -> C 0.129  R 0.100
+metal2   0.09  12        33          0.9    -> C 0.077  R 0.100
+metal3   0.05   8        26          1.5    -> C 0.064  R 0.033
+poly     22.5  86        -           0.6
+# inter-layer: M1 over poly 63 aF/um^2, M2 over M1 31, M3 over M2 31; fringe M1-poly 58, M2-M1 33, M3-M2 56 aF/um

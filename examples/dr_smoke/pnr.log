@@ -1,0 +1,174 @@
+OpenROAD v2.0-17598-ga008522d8 
+Features included (+) or not (-): +Charts +GPU +GUI +Python : None
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO ODB-0227] LEF file: /home/fpga/pdks/fp5/digital/lef/fp5_osu.lef, created 10 layers, 2 vias, 42 library cells
+[WARNING ORD-2001] LEF macro PADGND pin YPAD missing from liberty cell.
+[WARNING ORD-2001] LEF macro PADVDD pin YPAD missing from liberty cell.
+[WARNING ORD-2001] LEF macro PADGND pin YPAD missing from liberty cell.
+[WARNING ORD-2001] LEF macro PADVDD pin YPAD missing from liberty cell.
+[WARNING IFP-0028] Core area lower left (30.000, 30.000) snapped to (31.200, 30.000).
+[INFO IFP-0001] Added 5 rows of 68 site core.
+Found 0 macro blocks.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0001] Number of slots           170
+[INFO PPL-0002] Number of I/O             10
+[INFO PPL-0003] Number of I/O w/sink      10
+[INFO PPL-0004] Number of I/O w/o sink    0
+[INFO PPL-0005] Slots per section         200
+[INFO PPL-0008] Successfully assigned pins to sections.
+[INFO PPL-0012] I/O nets HPWL: 1245.00 um.
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  2.400 30.000 ) um
+[INFO GPL-0004] CoreBBox: ( 31.200 30.000 ) ( 194.400 180.000 ) um
+[INFO GPL-0006] NumInstances:                33
+[INFO GPL-0007] NumPlaceInstances:           33
+[INFO GPL-0008] NumFixedInstances:            0
+[INFO GPL-0009] NumDummyInstances:            0
+[INFO GPL-0010] NumNets:                     35
+[INFO GPL-0011] NumPins:                    116
+[INFO GPL-0012] DieBBox:  (  0.000  0.000 ) ( 225.000 225.000 ) um
+[INFO GPL-0013] CoreBBox: ( 31.200 30.000 ) ( 194.400 180.000 ) um
+[INFO GPL-0016] CoreArea:             24480.000 um^2
+[INFO GPL-0017] NonPlaceInstsArea:        0.000 um^2
+[INFO GPL-0018] PlaceInstsArea:       13608.000 um^2
+[INFO GPL-0019] Util:                    55.588 %
+[INFO GPL-0020] StdInstsArea:         13608.000 um^2
+[INFO GPL-0021] MacroInstsArea:           0.000 um^2
+[InitialPlace]  Iter: 1 CG residual: 0.00000010 HPWL: 2640900
+[InitialPlace]  Iter: 2 CG residual: 0.00000008 HPWL: 1925261
+[InitialPlace]  Iter: 3 CG residual: 0.00000012 HPWL: 1913228
+[InitialPlace]  Iter: 4 CG residual: 0.00000008 HPWL: 1915742
+[InitialPlace]  Iter: 5 CG residual: 0.00000005 HPWL: 1917439
+[INFO GPL-0031] FillerInit:NumGCells:        35
+[INFO GPL-0032] FillerInit:NumGNets:         35
+[INFO GPL-0033] FillerInit:NumGPins:        116
+[INFO GPL-0023] TargetDensity:            0.600
+[INFO GPL-0024] AvrgPlaceInstArea:      412.364 um^2
+[INFO GPL-0025] IdealBinArea:           687.273 um^2
+[INFO GPL-0026] IdealBinCnt:                 35
+[INFO GPL-0027] TotalBinArea:         24480.000 um^2
+[INFO GPL-0028] BinCnt:         4      4
+[INFO GPL-0029] BinSize: ( 40.800 37.500 )
+[INFO GPL-0030] NumBins: 16
+[NesterovSolve] Iter:    1 overflow: 0.730 HPWL: 974230
+[NesterovSolve] Iter:   10 overflow: 0.729 HPWL: 978227
+[NesterovSolve] Iter:   20 overflow: 0.729 HPWL: 979610
+[NesterovSolve] Iter:   30 overflow: 0.729 HPWL: 978804
+[NesterovSolve] Iter:   40 overflow: 0.729 HPWL: 978993
+[NesterovSolve] Iter:   50 overflow: 0.729 HPWL: 978953
+[NesterovSolve] Iter:   60 overflow: 0.729 HPWL: 978916
+[NesterovSolve] Iter:   70 overflow: 0.729 HPWL: 979013
+[NesterovSolve] Iter:   80 overflow: 0.729 HPWL: 978978
+[NesterovSolve] Iter:   90 overflow: 0.729 HPWL: 978914
+[NesterovSolve] Iter:  100 overflow: 0.729 HPWL: 978841
+[NesterovSolve] Iter:  110 overflow: 0.729 HPWL: 978646
+[NesterovSolve] Iter:  120 overflow: 0.729 HPWL: 978428
+[NesterovSolve] Iter:  130 overflow: 0.729 HPWL: 978409
+[NesterovSolve] Iter:  140 overflow: 0.729 HPWL: 977948
+[NesterovSolve] Iter:  150 overflow: 0.729 HPWL: 978025
+[NesterovSolve] Iter:  160 overflow: 0.728 HPWL: 977697
+[NesterovSolve] Iter:  170 overflow: 0.727 HPWL: 983755
+[NesterovSolve] Iter:  180 overflow: 0.725 HPWL: 1007912
+[NesterovSolve] Iter:  190 overflow: 0.720 HPWL: 1094251
+[NesterovSolve] Iter:  200 overflow: 0.695 HPWL: 1243246
+[NesterovSolve] Iter:  210 overflow: 0.636 HPWL: 1339955
+[NesterovSolve] Iter:  220 overflow: 0.573 HPWL: 1417444
+[NesterovSolve] Iter:  230 overflow: 0.516 HPWL: 1506768
+[NesterovSolve] Iter:  240 overflow: 0.461 HPWL: 1625047
+[NesterovSolve] Iter:  250 overflow: 0.416 HPWL: 1735410
+[NesterovSolve] Iter:  260 overflow: 0.362 HPWL: 1851903
+[NesterovSolve] Iter:  270 overflow: 0.313 HPWL: 1953197
+[NesterovSolve] Iter:  280 overflow: 0.261 HPWL: 2027970
+[NesterovSolve] Iter:  290 overflow: 0.212 HPWL: 2116263
+[NesterovSolve] Iter:  300 overflow: 0.167 HPWL: 2162233
+[NesterovSolve] Iter:  310 overflow: 0.117 HPWL: 2214539
+[NesterovSolve] Finished with Overflow: 0.099866
+[WARNING RSZ-0021] no estimated parasitics. Using wire load models.
+[INFO RSZ-0058] Using max wire length 11874um.
+[WARNING DPL-0038] No 1-site fill cells detected.  To remove 1-site gaps use the -disallow_one_site_gaps flag.
+Placement Analysis
+---------------------------------
+total displacement        530.7 u
+average displacement       16.1 u
+max displacement           35.0 u
+original HPWL            2238.4 u
+legalized HPWL           2688.9 u
+delta HPWL                   20 %
+
+[INFO CTS-0050] Root buffer is CLKBUF2.
+[INFO CTS-0051] Sink buffer is CLKBUF1.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    CLKBUF3
+                    CLKBUF2
+                    CLKBUF1
+[INFO CTS-0049] Characterization buffer is CLKBUF1.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 8 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 3 buffer(s) types.
+[INFO CTS-0200] 0 placement blockages have been identified.
+[INFO CTS-0201] 0 placed hard macros will be treated like blockages.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 8.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 150000  dbu (150 um).
+[INFO CTS-0023]  Original sink region: [(54000, 40500), (147600, 160500)].
+[INFO CTS-0024]  Normalized sink region: [(0.36, 0.27), (0.984, 1.07)].
+[INFO CTS-0025]     Width:  0.6240.
+[INFO CTS-0026]     Height: 0.8000.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 4
+    Sub-region size: 0.6240 X 0.4000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 8.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 4:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 8
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 452.92 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Leaf load cells 0
+[INFO RSZ-0098] No setup violations found
+[WARNING DPL-0038] No 1-site fill cells detected.  To remove 1-site gaps use the -disallow_one_site_gaps flag.
+Placement Analysis
+---------------------------------
+total displacement        423.3 u
+average displacement       11.8 u
+max displacement           90.9 u
+original HPWL            3321.6 u
+legalized HPWL           3319.5 u
+delta HPWL                    0 %
+
+RESULT cnt8 worst path 2.05 ns (period 30)
+Design area 16416 u^2 67% utilization.
+[INFO DRT-0167] List of default vias:
+  Layer via
+    default via: M2_M1
+  Layer via2
+    default via: M3_M2
+[INFO DRT-0168] Init region query.
+[INFO DRT-0033] poly shape region query size = 0.
+[INFO DRT-0033] cc shape region query size = 0.
+[INFO DRT-0033] metal1 shape region query size = 1266.
+[INFO DRT-0033] via shape region query size = 71.
+[INFO DRT-0033] metal2 shape region query size = 46.
+[INFO DRT-0033] via2 shape region query size = 0.
+[INFO DRT-0033] metal3 shape region query size = 0.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0036] poly guide region query size = 0.
+[INFO DRT-0036] cc guide region query size = 0.
+[INFO DRT-0036] metal1 guide region query size = 83.
+[INFO DRT-0036] via guide region query size = 0.
+[INFO DRT-0036] metal2 guide region query size = 57.
+[INFO DRT-0036] via2 guide region query size = 0.
+[INFO DRT-0036] metal3 guide region query size = 26.
+[INFO DRT-0179] Init gr pin query.

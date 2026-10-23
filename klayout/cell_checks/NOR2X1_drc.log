@@ -1,0 +1,6 @@
+ERROR: RuntimeError: Unable to open file: /home/fpga/pdks/fp5/digital/gds//klayout/cell_checks/NOR2X1_drc.lyrdb (errno=2) in ReportDatabase::save in Executable::cleanup
+  :/built-in-macros/_drc_engine.rb:137:in `save'
+  :/built-in-macros/_drc_engine.rb:137:in `write'
+  :/built-in-macros/_drc_engine.rb:111:in `finish'
+  :/built-in-macros/_drc_engine.rb:2993:in `_finish'
+  :/built-in-macros/drc_interpreters.lym:51:in `cleanup'

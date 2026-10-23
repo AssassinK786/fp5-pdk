@@ -1,0 +1,106 @@
+AND2X1 A->Y [combinational] simulated 9 points
+AND2X1 B->Y [combinational] simulated 9 points
+AND2X1: mean sim/lib ratio 1.203
+AND2X2 A->Y [combinational] simulated 9 points
+AND2X2 B->Y [combinational] simulated 9 points
+AND2X2: mean sim/lib ratio 1.182
+AOI21X1 A->Y [combinational] simulated 9 points
+AOI21X1 B->Y [combinational] simulated 9 points
+AOI21X1 C->Y [combinational] simulated 9 points
+AOI21X1: mean sim/lib ratio 1.255
+AOI22X1 A->Y [combinational] simulated 9 points
+AOI22X1 B->Y [combinational] simulated 9 points
+AOI22X1 C->Y [combinational] simulated 9 points
+AOI22X1 D->Y [combinational] simulated 9 points
+AOI22X1: mean sim/lib ratio 1.285
+BUFX2 A->Y [combinational] simulated 9 points
+BUFX2: mean sim/lib ratio 1.120
+BUFX4 A->Y [combinational] simulated 9 points
+BUFX4: mean sim/lib ratio 1.109
+CLKBUF1 A->Y [combinational] simulated 9 points
+CLKBUF1: mean sim/lib ratio 1.149
+CLKBUF2 A->Y [combinational] simulated 9 points
+CLKBUF2: mean sim/lib ratio 1.155
+CLKBUF3 A->Y [combinational] simulated 9 points
+CLKBUF3: mean sim/lib ratio 1.159
+DFFNEGX1 CLK->Q [falling_edge] simulated 9 points
+DFFNEGX1: mean sim/lib ratio 1.227
+DFFPOSX1 CLK->Q [rising_edge] simulated 9 points
+DFFPOSX1: mean sim/lib ratio 1.267
+DFFSR CLK->Q [rising_edge] simulated 9 points
+DFFSR: mean sim/lib ratio 1.087
+FAX1 A->YC [combinational] simulated 9 points
+FAX1 B->YC [combinational] simulated 9 points
+FAX1 C->YC [combinational] simulated 9 points
+FAX1 A->YS [combinational] simulated 9 points
+FAX1 B->YS [combinational] simulated 9 points
+FAX1 C->YS [combinational] simulated 9 points
+FAX1: mean sim/lib ratio 1.183
+HAX1 A->YC [combinational] simulated 9 points
+HAX1 B->YC [combinational] simulated 9 points
+HAX1 A->YS [combinational] simulated 9 points
+HAX1 B->YS [combinational] simulated 9 points
+HAX1: mean sim/lib ratio 1.129
+INVX1 A->Y [combinational] simulated 9 points
+INVX1: mean sim/lib ratio 1.104
+INVX2 A->Y [combinational] simulated 9 points
+INVX2: mean sim/lib ratio 1.130
+INVX4 A->Y [combinational] simulated 9 points
+INVX4: mean sim/lib ratio 1.130
+INVX8 A->Y [combinational] simulated 9 points
+INVX8: mean sim/lib ratio 1.130
+LATCH CLK->Q [rising_edge] simulated 9 points
+LATCH: mean sim/lib ratio 1.167
+MUX2X1 A->Y [combinational] simulated 9 points
+MUX2X1 B->Y [combinational] simulated 9 points
+MUX2X1 S->Y [combinational] simulated 9 points
+MUX2X1: mean sim/lib ratio 1.370
+NAND2X1 A->Y [combinational] simulated 9 points
+NAND2X1 B->Y [combinational] simulated 9 points
+NAND2X1: mean sim/lib ratio 1.229
+NAND3X1 A->Y [combinational] simulated 9 points
+NAND3X1 B->Y [combinational] simulated 9 points
+NAND3X1 C->Y [combinational] simulated 9 points
+NAND3X1: mean sim/lib ratio 1.427
+NOR2X1 A->Y [combinational] simulated 9 points
+NOR2X1 B->Y [combinational] simulated 9 points
+NOR2X1: mean sim/lib ratio 1.225
+NOR3X1 A->Y [combinational] simulated 9 points
+NOR3X1 B->Y [combinational] simulated 9 points
+NOR3X1 C->Y [combinational] simulated 9 points
+NOR3X1: mean sim/lib ratio 1.287
+OAI21X1 A->Y [combinational] simulated 9 points
+OAI21X1 B->Y [combinational] simulated 9 points
+OAI21X1 C->Y [combinational] simulated 9 points
+OAI21X1: mean sim/lib ratio 1.292
+OAI22X1 A->Y [combinational] simulated 9 points
+OAI22X1 B->Y [combinational] simulated 9 points
+OAI22X1 C->Y [combinational] simulated 9 points
+OAI22X1 D->Y [combinational] simulated 9 points
+OAI22X1: mean sim/lib ratio 1.338
+OR2X1 A->Y [combinational] simulated 9 points
+OR2X1 B->Y [combinational] simulated 9 points
+OR2X1: mean sim/lib ratio 1.191
+OR2X2 A->Y [combinational] simulated 9 points
+OR2X2 B->Y [combinational] simulated 9 points
+OR2X2: mean sim/lib ratio 1.180
+PADINC YPAD->DI [combinational] simulated 9 points
+PADINC: mean sim/lib ratio 1.223
+PADINOUT YPAD->DI [combinational] simulated 9 points
+PADINOUT: mean sim/lib ratio 1.223
+PADOUT DO->YPAD: sim failed, scaled
+PADOUT: nothing simulated
+TBUFX1 A->Y: sim failed, scaled
+TBUFX1: nothing simulated
+TBUFX2 A->Y: sim failed, scaled
+TBUFX2: nothing simulated
+XNOR2X1 A->Y [combinational] simulated 9 points
+XNOR2X1 B->Y [combinational] simulated 9 points
+XNOR2X1: mean sim/lib ratio 1.417
+XOR2X1 A->Y [combinational] simulated 9 points
+XOR2X1 B->Y [combinational] simulated 9 points
+XOR2X1: mean sim/lib ratio 1.404
+PADFC: no netlist, unchanged
+PADNC: no netlist, unchanged
+PADVDD: no netlist, unchanged
+PADGND: no netlist, unchanged

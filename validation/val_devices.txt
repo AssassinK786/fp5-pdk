@@ -1,0 +1,7 @@
+Kerstetter (Baker C5 card): NMOS VGS 0.663 V, gm 106 uA/V, ro 11 MOhm, lambda 0.018 | PMOS VSG 0.912, gm 121, ro 12.5, lambda 0.016
+FP5 tt NMOS 27/0.6: V(G)S 0.640 V, gm 194 uA/V, ro 0.7 MOhm, lambda 0.274 1/V
+FP5 tt PMOS 54/0.6: V(G)S 0.887 V, gm 183 uA/V, ro 0.7 MOhm, lambda 0.300 1/V
+FP5 ff NMOS 27/0.6: V(G)S 0.568 V, gm 197 uA/V, ro 0.7 MOhm, lambda 0.267 1/V
+FP5 ff PMOS 54/0.6: V(G)S 0.842 V, gm 190 uA/V, ro 0.6 MOhm, lambda 0.337 1/V
+FP5 ss NMOS 27/0.6: V(G)S 0.713 V, gm 189 uA/V, ro 0.7 MOhm, lambda 0.279 1/V
+FP5 ss PMOS 54/0.6: V(G)S 0.932 V, gm 176 uA/V, ro 0.8 MOhm, lambda 0.265 1/V

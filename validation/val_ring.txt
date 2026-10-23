@@ -1,0 +1,4 @@
+Wn 1.8 / Wp 3.6: tt 209.9 MHz, ff 232.2 MHz, ss 185.3 MHz   (T89Y measured 94.47 MHz; 105-lot range 86-122)
+Wn 3.0 / Wp 6.0: tt 243.8 MHz, ff 269.5 MHz, ss 215.4 MHz   (T89Y measured 94.47 MHz; 105-lot range 86-122)
+Wn 3.6 / Wp 7.2: tt 250.4 MHz, ff 276.7 MHz, ss 221.5 MHz   (T89Y measured 94.47 MHz; 105-lot range 86-122)
+Wn 6.0 / Wp 12.0: tt 256.3 MHz, ff 282.3 MHz, ss 227.6 MHz   (T89Y measured 94.47 MHz; 105-lot range 86-122)

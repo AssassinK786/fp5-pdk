@@ -1,0 +1,12 @@
+typical T89Y card: N Vt 0.667 Idss 399 | P Vt 0.950 Idss 233 uA/um
+tt n: Vt 0.667 (tgt 0.667) Idss 399.4 (tgt 399.4) TOX 141.0 A
+tt p: Vt 0.950 (tgt 0.950) Idss 233.0 (tgt 233.0) TOX 141.0 A
+ff n: Vt 0.595 (tgt 0.595) Idss 420.0 (tgt 428.8) TOX 136.2 A
+ff p: Vt 0.904 (tgt 0.905) Idss 260.4 (tgt 261.2) TOX 136.2 A
+ss n: Vt 0.739 (tgt 0.739) Idss 374.3 (tgt 370.0) TOX 145.8 A
+ss p: Vt 0.995 (tgt 0.995) Idss 205.3 (tgt 204.8) TOX 145.8 A
+fs n: Vt 0.595 (tgt 0.595) Idss 413.1 (tgt 428.8) TOX 141.0 A
+fs p: Vt 0.995 (tgt 0.995) Idss 205.3 (tgt 204.8) TOX 141.0 A
+sf n: Vt 0.739 (tgt 0.739) Idss 375.0 (tgt 370.0) TOX 141.0 A
+sf p: Vt 0.904 (tgt 0.905) Idss 260.5 (tgt 261.2) TOX 141.0 A
+wrote c5.lib

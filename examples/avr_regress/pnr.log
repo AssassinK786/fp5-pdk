@@ -1,0 +1,215 @@
+OpenROAD v2.0-17598-ga008522d8 
+Features included (+) or not (-): +Charts +GPU +GUI +Python : None
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+[INFO ODB-0227] LEF file: /home/fpga/pdks/fp5/digital/lef/fp5_osu.lef, created 10 layers, 2 vias, 42 library cells
+[WARNING ORD-2001] LEF macro PADGND pin YPAD missing from liberty cell.
+[WARNING ORD-2001] LEF macro PADVDD pin YPAD missing from liberty cell.
+[WARNING ORD-2001] LEF macro PADGND pin YPAD missing from liberty cell.
+[WARNING ORD-2001] LEF macro PADVDD pin YPAD missing from liberty cell.
+[WARNING IFP-0028] Core area lower left (30.000, 30.000) snapped to (31.200, 30.000).
+[INFO IFP-0001] Added 66 rows of 826 site core.
+Found 0 macro blocks.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0001] Number of slots           1534
+[INFO PPL-0002] Number of I/O             160
+[INFO PPL-0003] Number of I/O w/sink      158
+[INFO PPL-0004] Number of I/O w/o sink    2
+[INFO PPL-0005] Slots per section         200
+[INFO PPL-0008] Successfully assigned pins to sections.
+[INFO PPL-0012] I/O nets HPWL: 212236.66 um.
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  2.400 30.000 ) um
+[INFO GPL-0004] CoreBBox: ( 31.200 30.000 ) ( 2013.600 2010.000 ) um
+[INFO GPL-0006] NumInstances:              6109
+[INFO GPL-0007] NumPlaceInstances:         6109
+[INFO GPL-0008] NumFixedInstances:            0
+[INFO GPL-0009] NumDummyInstances:            0
+[INFO GPL-0010] NumNets:                   6182
+[INFO GPL-0011] NumPins:                  21987
+[INFO GPL-0012] DieBBox:  (  0.000  0.000 ) ( 2044.050 2044.050 ) um
+[INFO GPL-0013] CoreBBox: ( 31.200 30.000 ) ( 2013.600 2010.000 ) um
+[INFO GPL-0016] CoreArea:            3925152.000 um^2
+[INFO GPL-0017] NonPlaceInstsArea:        0.000 um^2
+[INFO GPL-0018] PlaceInstsArea:      1968336.000 um^2
+[INFO GPL-0019] Util:                    50.147 %
+[INFO GPL-0020] StdInstsArea:        1968336.000 um^2
+[INFO GPL-0021] MacroInstsArea:           0.000 um^2
+[InitialPlace]  Iter: 1 CG residual: 0.08260038 HPWL: 477271500
+[InitialPlace]  Iter: 2 CG residual: 0.00101135 HPWL: 385377751
+[InitialPlace]  Iter: 3 CG residual: 0.00014273 HPWL: 338414281
+[InitialPlace]  Iter: 4 CG residual: 0.00001180 HPWL: 334359128
+[InitialPlace]  Iter: 5 CG residual: 0.00000547 HPWL: 332797762
+[INFO GPL-0031] FillerInit:NumGCells:      7389
+[INFO GPL-0032] FillerInit:NumGNets:       6182
+[INFO GPL-0033] FillerInit:NumGPins:      21987
+[INFO GPL-0023] TargetDensity:            0.600
+[INFO GPL-0024] AvrgPlaceInstArea:      322.203 um^2
+[INFO GPL-0025] IdealBinArea:           537.004 um^2
+[INFO GPL-0026] IdealBinCnt:               7309
+[INFO GPL-0027] TotalBinArea:        3925152.000 um^2
+[INFO GPL-0028] BinCnt:        64     64
+[INFO GPL-0029] BinSize: ( 30.975 30.938 )
+[INFO GPL-0030] NumBins: 4096
+[NesterovSolve] Iter:    1 overflow: 0.995 HPWL: 82334515
+[NesterovSolve] Iter:   10 overflow: 0.990 HPWL: 91642907
+[NesterovSolve] Iter:   20 overflow: 0.990 HPWL: 91661598
+[NesterovSolve] Iter:   30 overflow: 0.990 HPWL: 91751328
+[NesterovSolve] Iter:   40 overflow: 0.990 HPWL: 91362028
+[NesterovSolve] Iter:   50 overflow: 0.990 HPWL: 90657611
+[NesterovSolve] Iter:   60 overflow: 0.990 HPWL: 89762428
+[NesterovSolve] Iter:   70 overflow: 0.990 HPWL: 88832285
+[NesterovSolve] Iter:   80 overflow: 0.990 HPWL: 88117658
+[NesterovSolve] Iter:   90 overflow: 0.990 HPWL: 87733537
+[NesterovSolve] Iter:  100 overflow: 0.990 HPWL: 87588037
+[NesterovSolve] Iter:  110 overflow: 0.990 HPWL: 87599035
+[NesterovSolve] Iter:  120 overflow: 0.990 HPWL: 87801276
+[NesterovSolve] Iter:  130 overflow: 0.990 HPWL: 88334535
+[NesterovSolve] Iter:  140 overflow: 0.989 HPWL: 89533136
+[NesterovSolve] Iter:  150 overflow: 0.989 HPWL: 91932885
+[NesterovSolve] Iter:  160 overflow: 0.988 HPWL: 96515095
+[NesterovSolve] Iter:  170 overflow: 0.987 HPWL: 104856016
+[NesterovSolve] Iter:  180 overflow: 0.984 HPWL: 117260597
+[NesterovSolve] Iter:  190 overflow: 0.981 HPWL: 133682389
+[NesterovSolve] Iter:  200 overflow: 0.976 HPWL: 154675978
+[NesterovSolve] Iter:  210 overflow: 0.970 HPWL: 182257610
+[NesterovSolve] Iter:  220 overflow: 0.961 HPWL: 217762398
+[NesterovSolve] Iter:  230 overflow: 0.948 HPWL: 258911399
+[NesterovSolve] Iter:  240 overflow: 0.933 HPWL: 305638628
+[NesterovSolve] Iter:  250 overflow: 0.915 HPWL: 358592231
+[NesterovSolve] Iter:  260 overflow: 0.891 HPWL: 416607139
+[NesterovSolve] Iter:  270 overflow: 0.863 HPWL: 474098896
+[NesterovSolve] Iter:  280 overflow: 0.833 HPWL: 526917854
+[NesterovSolve] Iter:  290 overflow: 0.799 HPWL: 575781332
+[NesterovSolve] Iter:  300 overflow: 0.761 HPWL: 621252491
+[NesterovSolve] Iter:  310 overflow: 0.719 HPWL: 669734470
+[NesterovSolve] Iter:  320 overflow: 0.672 HPWL: 722715707
+[NesterovSolve] Iter:  330 overflow: 0.621 HPWL: 774277249
+[NesterovSolve] Iter:  340 overflow: 0.570 HPWL: 825575637
+[NesterovSolve] Iter:  350 overflow: 0.512 HPWL: 865516704
+[NesterovSolve] Iter:  360 overflow: 0.454 HPWL: 900492139
+[NesterovSolve] Iter:  370 overflow: 0.402 HPWL: 922113628
+[NesterovSolve] Iter:  380 overflow: 0.357 HPWL: 934948439
+[NesterovSolve] Iter:  390 overflow: 0.320 HPWL: 944494839
+[NesterovSolve] Iter:  400 overflow: 0.285 HPWL: 947810481
+[NesterovSolve] Iter:  410 overflow: 0.253 HPWL: 953960847
+[NesterovSolve] Iter:  420 overflow: 0.226 HPWL: 957045044
+[NesterovSolve] Iter:  430 overflow: 0.202 HPWL: 960072294
+[NesterovSolve] Iter:  440 overflow: 0.177 HPWL: 962564175
+[NesterovSolve] Iter:  450 overflow: 0.154 HPWL: 964239484
+[NesterovSolve] Iter:  460 overflow: 0.134 HPWL: 966820361
+[NesterovSolve] Iter:  470 overflow: 0.117 HPWL: 969354972
+[NesterovSolve] Iter:  480 overflow: 0.100 HPWL: 971089219
+[NesterovSolve] Finished with Overflow: 0.098844
+[WARNING RSZ-0021] no estimated parasitics. Using wire load models.
+[INFO RSZ-0058] Using max wire length 11874um.
+[INFO RSZ-0034] Found 62 slew violations.
+[INFO RSZ-0036] Found 126 capacitance violations.
+[INFO RSZ-0038] Inserted 328 buffers in 145 nets.
+[INFO RSZ-0039] Resized 17 instances.
+[WARNING DPL-0038] No 1-site fill cells detected.  To remove 1-site gaps use the -disallow_one_site_gaps flag.
+Placement Analysis
+---------------------------------
+total displacement     100840.4 u
+average displacement       15.7 u
+max displacement           64.9 u
+original HPWL         1136492.4 u
+legalized HPWL        1211646.3 u
+delta HPWL                    7 %
+
+[INFO CTS-0050] Root buffer is CLKBUF2.
+[INFO CTS-0051] Sink buffer is CLKBUF1.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    CLKBUF3
+                    CLKBUF2
+                    CLKBUF1
+[INFO CTS-0049] Characterization buffer is CLKBUF1.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 417 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 3 buffer(s) types.
+[INFO CTS-0200] 0 placement blockages have been identified.
+[INFO CTS-0201] 0 placed hard macros will be treated like blockages.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 417.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 150000  dbu (150 um).
+[INFO CTS-0023]  Original sink region: [(42000, 40500), (1926000, 1999500)].
+[INFO CTS-0024]  Normalized sink region: [(0.28, 0.27), (12.84, 13.33)].
+[INFO CTS-0025]     Width:  12.5600.
+[INFO CTS-0026]     Height: 13.0600.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 209
+    Sub-region size: 12.5600 X 6.5300
+[INFO CTS-0034]     Segment length (rounded): 4.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 105
+    Sub-region size: 6.2800 X 6.5300
+[INFO CTS-0034]     Segment length (rounded): 4.
+ Level 3
+    Direction: Vertical
+    Sinks per sub-region: 53
+    Sub-region size: 6.2800 X 3.2650
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 4
+    Direction: Horizontal
+    Sinks per sub-region: 27
+    Sub-region size: 3.1400 X 3.2650
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 5
+    Direction: Vertical
+    Sinks per sub-region: 14
+    Sub-region size: 3.1400 X 1.6325
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 417.
+[INFO CTS-0018]     Created 49 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 49 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 5:1, 6:1, 7:3, 9:1, 10:3, 11:2, 12:1, 13:4, 14:3, 15:5, 16:3, 17:1, 18:1, 19:1, 20:1, 21:1..
+[INFO CTS-0017]     Max level of the clock tree: 5.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 433
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 3106.15 um
+[INFO CTS-0102]  Path depth 3 - 3
+[INFO CTS-0207]  Leaf load cells 16
+[INFO RSZ-0098] No setup violations found
+[WARNING DPL-0038] No 1-site fill cells detected.  To remove 1-site gaps use the -disallow_one_site_gaps flag.
+Placement Analysis
+---------------------------------
+total displacement       4588.8 u
+average displacement        0.7 u
+max displacement           64.6 u
+original HPWL         1235972.7 u
+legalized HPWL        1239510.9 u
+delta HPWL                    0 %
+
+RESULT avr_tiny_core worst path 22.64 ns (period 30)
+Design area 2114496 u^2 54% utilization.
+[INFO DRT-0167] List of default vias:
+  Layer via
+    default via: M2_M1
+  Layer via2
+    default via: M3_M2
+[INFO DRT-0168] Init region query.
+[INFO DRT-0033] poly shape region query size = 0.
+[INFO DRT-0033] cc shape region query size = 0.
+[INFO DRT-0033] metal1 shape region query size = 166016.
+[INFO DRT-0033] via shape region query size = 4624.
+[INFO DRT-0033] metal2 shape region query size = 3468.
+[INFO DRT-0033] via2 shape region query size = 0.
+[INFO DRT-0033] metal3 shape region query size = 0.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0036] poly guide region query size = 0.
+[INFO DRT-0036] cc guide region query size = 0.
+[INFO DRT-0036] metal1 guide region query size = 18753.
+[INFO DRT-0036] via guide region query size = 0.
+[INFO DRT-0036] metal2 guide region query size = 13029.
+[INFO DRT-0036] via2 guide region query size = 0.
+[INFO DRT-0036] metal3 guide region query size = 5356.
+[INFO DRT-0179] Init gr pin query.

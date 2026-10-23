@@ -1,0 +1,42 @@
+# FP5 place & route (OpenROAD 2.0). env: TOP NET OUT [PERIOD ns] [UTIL %]
+set_thread_count [expr {[info exists ::env(THREADS)] ? $::env(THREADS) : 4}]
+read_liberty $::env(FP5_LIB)
+read_lef $::env(FP5_LEF)
+read_verilog $::env(NET)
+link_design $::env(TOP)
+set per [expr {[info exists ::env(PERIOD)] ? $::env(PERIOD) : 50}]
+create_clock -name clk -period $per [get_ports clk]
+set_input_delay 0 -clock clk [delete_from_list [all_inputs] [get_ports clk]]
+set_output_delay 0 -clock clk [all_outputs]
+set_load 0.05 [all_outputs]
+initialize_floorplan -site core -utilization [expr {[info exists ::env(UTIL)] ? $::env(UTIL) : 50}] -aspect_ratio 1 -core_space 30
+make_tracks metal1 -x_offset 1.5 -x_pitch 3.0 -y_offset 1.5 -y_pitch 3.0
+make_tracks metal2 -x_offset 1.2 -x_pitch 2.4 -y_offset 1.2 -y_pitch 2.4
+make_tracks metal3 -x_offset 1.5 -x_pitch 3.0 -y_offset 1.5 -y_pitch 3.0
+add_global_connection -net vdd -pin_pattern vdd -power
+add_global_connection -net gnd -pin_pattern gnd -ground
+global_connect
+set_wire_rc -signal -layer metal2
+set_wire_rc -clock -layer metal3
+place_pins -hor_layers metal3 -ver_layers metal2
+global_placement -density 0.6
+set_max_fanout 10 [current_design]
+repair_design
+detailed_placement
+clock_tree_synthesis -root_buf CLKBUF2 -buf_list {CLKBUF1 CLKBUF2 CLKBUF3}
+set_propagated_clock [all_clocks]
+estimate_parasitics -placement
+repair_timing -setup
+detailed_placement
+set_routing_layers -signal metal2-metal3 -clock metal2-metal3   ;# metal1 = cell pins only (OSU cells fill metal1)
+global_route -allow_congestion
+estimate_parasitics -global_routing
+report_checks -path_delay max -fields {slew cap} > $::env(OUT)/$::env(TOP).timing.rpt
+puts [format "RESULT %s worst path %.2f ns (period %s)" $::env(TOP) [expr $per - [sta::worst_slack -max]] $per]
+report_design_area
+if {![info exists ::env(NO_DR)]} {
+  detailed_route -output_drc $::env(OUT)/$::env(TOP).drc.rpt -verbose 1
+  write_def $::env(OUT)/$::env(TOP).def
+}
+write_db $::env(OUT)/$::env(TOP).odb
+exit

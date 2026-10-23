@@ -1,0 +1,627 @@
+VERSION 5.8 ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+DESIGN cnt8 ;
+UNITS DISTANCE MICRONS 1000 ;
+DIEAREA ( 0 0 ) ( 225000 225000 ) ;
+ROW ROW_0 core 31200 30000 N DO 68 BY 1 STEP 2400 0 ;
+ROW ROW_1 core 31200 60000 FS DO 68 BY 1 STEP 2400 0 ;
+ROW ROW_2 core 31200 90000 N DO 68 BY 1 STEP 2400 0 ;
+ROW ROW_3 core 31200 120000 FS DO 68 BY 1 STEP 2400 0 ;
+ROW ROW_4 core 31200 150000 N DO 68 BY 1 STEP 2400 0 ;
+TRACKS X 1500 DO 75 STEP 3000 LAYER metal1 ;
+TRACKS Y 1500 DO 75 STEP 3000 LAYER metal1 ;
+TRACKS X 1200 DO 94 STEP 2400 LAYER metal2 ;
+TRACKS Y 1200 DO 94 STEP 2400 LAYER metal2 ;
+TRACKS X 1500 DO 75 STEP 3000 LAYER metal3 ;
+TRACKS Y 1500 DO 75 STEP 3000 LAYER metal3 ;
+GCELLGRID X 0 DO 5 STEP 45000 ;
+GCELLGRID Y 0 DO 5 STEP 45000 ;
+COMPONENTS 36 ;
+    - _25_ INVX1 + PLACED ( 57600 60000 ) FS ;
+    - _26_ INVX1 + PLACED ( 52800 60000 ) FS ;
+    - _27_ INVX1 + PLACED ( 132000 90000 ) N ;
+    - _28_ NOR2X1 + PLACED ( 124800 30000 ) N ;
+    - _29_ AND2X1 + PLACED ( 124800 60000 ) FS ;
+    - _30_ OAI21X1 + PLACED ( 134400 60000 ) FS ;
+    - _31_ NOR2X1 + PLACED ( 172800 60000 ) FS ;
+    - _32_ AND2X1 + PLACED ( 158400 90000 ) N ;
+    - _33_ NAND3X1 + PLACED ( 115200 60000 ) FS ;
+    - _34_ OAI21X1 + PLACED ( 148800 90000 ) N ;
+    - _35_ NOR2X1 + PLACED ( 168000 90000 ) N ;
+    - _36_ NOR2X1 + PLACED ( 62400 60000 ) FS ;
+    - _37_ OAI21X1 + PLACED ( 91200 90000 ) N ;
+    - _38_ NOR2X1 + PLACED ( 84000 90000 ) N ;
+    - _39_ NOR3X1 + PLACED ( 79200 60000 ) FS ;
+    - _40_ OAI21X1 + PLACED ( 86400 120000 ) FS ;
+    - _41_ NOR2X1 + PLACED ( 48000 90000 ) N ;
+    - _42_ AND2X1 + PLACED ( 105600 120000 ) FS ;
+    - _43_ OAI21X1 + PLACED ( 96000 120000 ) FS ;
+    - _44_ NOR2X1 + PLACED ( 115200 120000 ) FS ;
+    - _45_ NAND3X1 + PLACED ( 69600 60000 ) FS ;
+    - _46_ OAI21X1 + PLACED ( 129600 120000 ) FS ;
+    - _47_ AOI21X1 + PLACED ( 100800 150000 ) N ;
+    - _48_ XOR2X1 + PLACED ( 98400 60000 ) FS ;
+    - _49_ NOR2X1 + PLACED ( 86400 30000 ) N ;
+    - _50_ DFFPOSX1 + PLACED ( 132000 30000 ) N ;
+    - _51_ DFFPOSX1 + PLACED ( 144000 60000 ) FS ;
+    - _52_ DFFPOSX1 + PLACED ( 144000 120000 ) FS ;
+    - _53_ DFFPOSX1 + PLACED ( 55200 90000 ) N ;
+    - _54_ DFFPOSX1 + PLACED ( 57600 120000 ) FS ;
+    - _55_ DFFPOSX1 + PLACED ( 67200 150000 ) N ;
+    - _56_ DFFPOSX1 + PLACED ( 141600 150000 ) N ;
+    - _57_ DFFPOSX1 + PLACED ( 50400 30000 ) N ;
+    - clkbuf_0_clk CLKBUF2 + SOURCE TIMING + PLACED ( 100800 90000 ) N ;
+    - clkbuf_1_0__f_clk CLKBUF2 + SOURCE TIMING + PLACED ( 93600 30000 ) N ;
+    - clkbuf_1_1__f_clk CLKBUF2 + SOURCE TIMING + PLACED ( 110400 150000 ) N ;
+END COMPONENTS
+PINS 10 ;
+    - clk + NET clk + DIRECTION INPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 135600 450 ) N ;
+    - q[0] + NET q[0] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 130800 450 ) N ;
+    - q[1] + NET q[1] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 126000 450 ) N ;
+    - q[2] + NET q[2] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 116400 450 ) N ;
+    - q[3] + NET q[3] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 102000 450 ) N ;
+    - q[4] + NET q[4] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 111600 450 ) N ;
+    - q[5] + NET q[5] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 106800 450 ) N ;
+    - q[6] + NET q[6] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 121200 450 ) N ;
+    - q[7] + NET q[7] + DIRECTION OUTPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 97200 450 ) N ;
+    - rst + NET rst + DIRECTION INPUT + USE SIGNAL
+      + PORT
+        + LAYER metal2 ( -450 -450 ) ( 450 450 )
+        + PLACED ( 92400 450 ) N ;
+END PINS
+SPECIALNETS 2 ;
+    - gnd ( _57_ gnd ) ( _56_ gnd ) ( _55_ gnd ) ( _54_ gnd ) ( _53_ gnd ) ( _52_ gnd ) ( _51_ gnd )
+      ( _50_ gnd ) ( _49_ gnd ) ( _48_ gnd ) ( _47_ gnd ) ( _46_ gnd ) ( _45_ gnd ) ( _44_ gnd ) ( _43_ gnd )
+      ( _42_ gnd ) ( _41_ gnd ) ( _40_ gnd ) ( _39_ gnd ) ( _38_ gnd ) ( _37_ gnd ) ( _36_ gnd ) ( _35_ gnd )
+      ( _34_ gnd ) ( _33_ gnd ) ( _32_ gnd ) ( _31_ gnd ) ( _30_ gnd ) ( _29_ gnd ) ( _28_ gnd ) ( _27_ gnd )
+      ( _26_ gnd ) ( _25_ gnd ) + USE GROUND ;
+    - vdd ( _57_ vdd ) ( _56_ vdd ) ( _55_ vdd ) ( _54_ vdd ) ( _53_ vdd ) ( _52_ vdd ) ( _51_ vdd )
+      ( _50_ vdd ) ( _49_ vdd ) ( _48_ vdd ) ( _47_ vdd ) ( _46_ vdd ) ( _45_ vdd ) ( _44_ vdd ) ( _43_ vdd )
+      ( _42_ vdd ) ( _41_ vdd ) ( _40_ vdd ) ( _39_ vdd ) ( _38_ vdd ) ( _37_ vdd ) ( _36_ vdd ) ( _35_ vdd )
+      ( _34_ vdd ) ( _33_ vdd ) ( _32_ vdd ) ( _31_ vdd ) ( _30_ vdd ) ( _29_ vdd ) ( _28_ vdd ) ( _27_ vdd )
+      ( _26_ vdd ) ( _25_ vdd ) + USE POWER ;
+END SPECIALNETS
+NETS 38 ;
+    - _00_ ( _50_ D ) ( _28_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 128400 40500 ) ( 142800 * )
+      NEW metal2 ( 142800 40500 ) ( * 43500 )
+      NEW metal1 ( 128400 40500 ) M2_M1
+      NEW metal2 ( 128400 40500 ) M3_M2
+      NEW metal2 ( 142800 40500 ) M3_M2
+      NEW metal1 ( 142800 43500 ) M2_M1 ;
+    - _01_ ( _51_ D ) ( _31_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 154800 79500 ) ( 176400 * )
+      NEW metal2 ( 154800 76500 ) ( * 79500 )
+      NEW metal1 ( 176400 79500 ) M2_M1
+      NEW metal2 ( 176400 79500 ) M3_M2
+      NEW metal2 ( 154800 79500 ) M3_M2
+      NEW metal1 ( 154800 76500 ) M2_M1 ;
+    - _02_ ( _52_ D ) ( _35_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 171600 100500 ) ( * 112500 )
+      NEW metal3 ( 154800 112500 ) ( 171600 * )
+      NEW metal2 ( 154800 112500 ) ( * 136500 )
+      NEW metal1 ( 171600 100500 ) M2_M1
+      NEW metal2 ( 171600 100500 ) M3_M2
+      NEW metal2 ( 154800 112500 ) M3_M2
+      NEW metal1 ( 154800 136500 ) M2_M1 ;
+    - _03_ ( _53_ D ) ( _38_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 66000 100500 ) ( 87600 * )
+      NEW metal2 ( 66000 100500 ) ( * 103500 )
+      NEW metal1 ( 87600 100500 ) M2_M1
+      NEW metal2 ( 87600 100500 ) M3_M2
+      NEW metal2 ( 66000 100500 ) M3_M2
+      NEW metal1 ( 66000 103500 ) M2_M1 ;
+    - _04_ ( _54_ D ) ( _41_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 51600 100500 ) ( * 118500 )
+      NEW metal2 ( 51600 118500 ) ( 66000 * )
+      NEW metal2 ( 66000 118500 ) ( * 136500 )
+      NEW metal2 ( 66000 136500 ) ( 68400 * )
+      NEW metal1 ( 51600 100500 ) M2_M1
+      NEW metal1 ( 68400 136500 ) M2_M1 ;
+    - _05_ ( _55_ D ) ( _44_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 78000 148500 ) ( * 163500 )
+      NEW metal2 ( 118800 139500 ) ( * 148500 )
+      NEW metal3 ( 78000 148500 ) ( 118800 * )
+      NEW metal2 ( 78000 148500 ) M3_M2
+      NEW metal1 ( 78000 163500 ) M2_M1
+      NEW metal1 ( 118800 139500 ) M2_M1
+      NEW metal2 ( 118800 148500 ) M3_M2 ;
+    - _06_ ( _56_ D ) ( _47_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 109200 160500 ) ( * 163500 )
+      NEW metal3 ( 109200 160500 ) ( 152400 * )
+      NEW metal2 ( 152400 160500 ) ( * 163500 )
+      NEW metal1 ( 109200 163500 ) M2_M1
+      NEW metal2 ( 109200 160500 ) M3_M2
+      NEW metal2 ( 152400 160500 ) M3_M2
+      NEW metal1 ( 152400 163500 ) M2_M1 ;
+    - _07_ ( _57_ D ) ( _49_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 61200 40500 ) ( * 43500 )
+      NEW metal3 ( 61200 40500 ) ( 90000 * )
+      NEW metal2 ( 61200 40500 ) M3_M2
+      NEW metal1 ( 61200 43500 ) M2_M1
+      NEW metal1 ( 90000 40500 ) M2_M1
+      NEW metal2 ( 90000 40500 ) M3_M2 ;
+    - _08_ ( _39_ A ) ( _36_ A ) ( _25_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 63600 82500 ) ( 82800 * )
+      NEW metal2 ( 61200 79500 ) ( 63600 * )
+      NEW metal2 ( 63600 79500 ) ( * 82500 )
+      NEW metal1 ( 63600 82500 ) M2_M1
+      NEW metal2 ( 63600 82500 ) M3_M2
+      NEW metal1 ( 82800 82500 ) M2_M1
+      NEW metal2 ( 82800 82500 ) M3_M2
+      NEW metal1 ( 61200 79500 ) M2_M1 ;
+    - _09_ ( _39_ B ) ( _26_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 56400 79500 ) ( 85200 * )
+      NEW metal1 ( 56400 79500 ) M2_M1
+      NEW metal2 ( 56400 79500 ) M3_M2
+      NEW metal1 ( 85200 79500 ) M2_M1
+      NEW metal2 ( 85200 79500 ) M3_M2 ;
+    - _10_ ( _46_ C ) ( _43_ C ) ( _40_ C ) ( _37_ C ) ( _34_ C ) ( _30_ C ) ( _27_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 140400 73500 ) ( 142800 * )
+      NEW metal2 ( 140400 73500 ) ( * 90000 )
+      NEW metal2 ( 104400 130500 ) ( * 133500 )
+      NEW metal3 ( 94800 130500 ) ( 104400 * )
+      NEW metal2 ( 94800 130500 ) ( * 133500 )
+      NEW metal2 ( 99600 106500 ) ( * 109500 )
+      NEW metal2 ( 94800 109500 ) ( 99600 * )
+      NEW metal2 ( 94800 109500 ) ( * 130500 )
+      NEW metal2 ( 138000 130500 ) ( * 133500 )
+      NEW metal3 ( 104400 130500 ) ( 138000 * )
+      NEW metal2 ( 135600 100500 ) ( 138000 * )
+      NEW metal2 ( 138000 100500 ) ( * 130500 )
+      NEW metal2 ( 138000 90000 ) ( 140400 * )
+      NEW metal2 ( 138000 90000 ) ( * 100500 )
+      NEW metal3 ( 138000 106500 ) ( 157200 * )
+      NEW metal1 ( 142800 73500 ) M2_M1
+      NEW metal1 ( 104400 133500 ) M2_M1
+      NEW metal2 ( 104400 130500 ) M3_M2
+      NEW metal2 ( 94800 130500 ) M3_M2
+      NEW metal1 ( 94800 133500 ) M2_M1
+      NEW metal1 ( 99600 106500 ) M2_M1
+      NEW metal1 ( 138000 133500 ) M2_M1
+      NEW metal2 ( 138000 130500 ) M3_M2
+      NEW metal1 ( 135600 100500 ) M2_M1
+      NEW metal1 ( 157200 106500 ) M2_M1
+      NEW metal2 ( 157200 106500 ) M3_M2
+      NEW metal2 ( 138000 106500 ) M3_M2 ;
+    - _11_ ( _34_ B ) ( _32_ B ) ( _31_ A ) ( _29_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 152400 103500 ) ( 154800 * )
+      NEW metal2 ( 154800 90000 ) ( * 103500 )
+      NEW metal2 ( 152400 90000 ) ( 154800 * )
+      NEW metal2 ( 152400 70500 ) ( * 90000 )
+      NEW metal3 ( 133200 70500 ) ( 152400 * )
+      NEW metal2 ( 162000 103500 ) ( * 106500 )
+      NEW metal2 ( 154800 103500 ) ( 162000 * )
+      NEW metal3 ( 152400 82500 ) ( 174000 * )
+      NEW metal1 ( 152400 103500 ) M2_M1
+      NEW metal2 ( 152400 70500 ) M3_M2
+      NEW metal1 ( 133200 70500 ) M2_M1
+      NEW metal2 ( 133200 70500 ) M3_M2
+      NEW metal1 ( 162000 106500 ) M2_M1
+      NEW metal1 ( 174000 82500 ) M2_M1
+      NEW metal2 ( 174000 82500 ) M3_M2
+      NEW metal2 ( 152400 82500 ) M3_M2 ;
+    - _12_ ( _31_ B ) ( _30_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 142800 79500 ) ( * 91500 )
+      NEW metal3 ( 142800 91500 ) ( 178800 * )
+      NEW metal2 ( 178800 76500 ) ( * 91500 )
+      NEW metal1 ( 142800 79500 ) M2_M1
+      NEW metal2 ( 142800 91500 ) M3_M2
+      NEW metal2 ( 178800 91500 ) M3_M2
+      NEW metal1 ( 178800 76500 ) M2_M1 ;
+    - _13_ ( _37_ B ) ( _35_ A ) ( _32_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 166800 103500 ) ( * 109500 )
+      NEW metal3 ( 94800 103500 ) ( 166800 * )
+      NEW metal2 ( 169200 97500 ) ( * 100500 )
+      NEW metal1 ( 169200 100500 ) ( * 103500 )
+      NEW metal2 ( 166800 103500 ) ( 169200 * )
+      NEW metal1 ( 166800 109500 ) M2_M1
+      NEW metal2 ( 166800 103500 ) M3_M2
+      NEW metal1 ( 94800 103500 ) M2_M1
+      NEW metal2 ( 94800 103500 ) M3_M2
+      NEW metal1 ( 169200 97500 ) M2_M1
+      NEW metal1 ( 169200 100500 ) M2_M1
+      NEW metal1 ( 169200 103500 ) M2_M1 ;
+    - _14_ ( _39_ C ) ( _36_ B ) ( _33_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 87600 76500 ) ( 123600 * )
+      NEW metal2 ( 123600 73500 ) ( * 76500 )
+      NEW metal3 ( 68400 76500 ) ( 87600 * )
+      NEW metal1 ( 87600 76500 ) M2_M1
+      NEW metal2 ( 87600 76500 ) M3_M2
+      NEW metal2 ( 123600 76500 ) M3_M2
+      NEW metal1 ( 123600 73500 ) M2_M1
+      NEW metal1 ( 68400 76500 ) M2_M1
+      NEW metal2 ( 68400 76500 ) M3_M2 ;
+    - _15_ ( _35_ B ) ( _34_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 157200 97500 ) ( * 100500 )
+      NEW metal2 ( 157200 97500 ) ( 159600 * )
+      NEW metal3 ( 159600 97500 ) ( 174000 * )
+      NEW metal2 ( 174000 97500 ) ( * 103500 )
+      NEW metal1 ( 157200 100500 ) M2_M1
+      NEW metal2 ( 159600 97500 ) M3_M2
+      NEW metal2 ( 174000 97500 ) M3_M2
+      NEW metal1 ( 174000 103500 ) M2_M1 ;
+    - _16_ ( _40_ B ) ( _38_ A ) ( _36_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 85200 97500 ) ( * 103500 )
+      NEW metal2 ( 85200 103500 ) ( 87600 * )
+      NEW metal2 ( 87600 103500 ) ( * 136500 )
+      NEW metal2 ( 66000 79500 ) ( 68400 * )
+      NEW metal2 ( 68400 79500 ) ( * 97500 )
+      NEW metal3 ( 68400 97500 ) ( 85200 * )
+      NEW metal2 ( 87600 136500 ) ( 90000 * )
+      NEW metal1 ( 85200 97500 ) M2_M1
+      NEW metal1 ( 66000 79500 ) M2_M1
+      NEW metal2 ( 68400 97500 ) M3_M2
+      NEW metal2 ( 85200 97500 ) M3_M2
+      NEW metal1 ( 90000 136500 ) M2_M1 ;
+    - _17_ ( _38_ B ) ( _37_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 97200 100500 ) ( 99600 * )
+      NEW metal2 ( 97200 100500 ) ( * 106500 )
+      NEW metal2 ( 90000 106500 ) ( 97200 * )
+      NEW metal2 ( 90000 103500 ) ( * 106500 )
+      NEW metal1 ( 99600 100500 ) M2_M1
+      NEW metal1 ( 90000 103500 ) M2_M1 ;
+    - _18_ ( _45_ C ) ( _43_ B ) ( _42_ B ) ( _41_ A ) ( _39_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 75600 70500 ) ( * 91500 )
+      NEW metal2 ( 49200 91500 ) ( * 97500 )
+      NEW metal3 ( 49200 91500 ) ( 75600 * )
+      NEW metal2 ( 94800 73500 ) ( 97200 * )
+      NEW metal2 ( 99600 112500 ) ( * 136500 )
+      NEW metal2 ( 99600 112500 ) ( 104400 * )
+      NEW metal2 ( 104400 91500 ) ( * 112500 )
+      NEW metal3 ( 97200 91500 ) ( 104400 * )
+      NEW metal3 ( 99600 133500 ) ( 109200 * )
+      NEW metal3 ( 75600 91500 ) ( 97200 * )
+      NEW metal2 ( 97200 73500 ) ( * 91500 )
+      NEW metal1 ( 75600 70500 ) M2_M1
+      NEW metal2 ( 75600 91500 ) M3_M2
+      NEW metal1 ( 49200 97500 ) M2_M1
+      NEW metal2 ( 49200 91500 ) M3_M2
+      NEW metal1 ( 94800 73500 ) M2_M1
+      NEW metal2 ( 97200 91500 ) M3_M2
+      NEW metal1 ( 99600 136500 ) M2_M1
+      NEW metal2 ( 104400 91500 ) M3_M2
+      NEW metal1 ( 109200 133500 ) M2_M1
+      NEW metal2 ( 109200 133500 ) M3_M2
+      NEW metal2 ( 99600 133500 ) M3_M2 ;
+    - _19_ ( _41_ B ) ( _40_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 54000 103500 ) ( 90000 * )
+      NEW metal2 ( 94800 136500 ) ( * 139500 )
+      NEW metal2 ( 94800 136500 ) ( 97200 * )
+      NEW metal2 ( 97200 112500 ) ( * 136500 )
+      NEW metal3 ( 90000 112500 ) ( 97200 * )
+      NEW metal3 ( 90000 103500 ) ( * 112500 )
+      NEW metal1 ( 54000 103500 ) M2_M1
+      NEW metal2 ( 54000 103500 ) M3_M2
+      NEW metal1 ( 94800 139500 ) M2_M1
+      NEW metal2 ( 97200 112500 ) M3_M2 ;
+    - _20_ ( _47_ B ) ( _46_ B ) ( _44_ A ) ( _42_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 116400 142500 ) ( * 151500 )
+      NEW metal3 ( 104400 151500 ) ( 116400 * )
+      NEW metal2 ( 104400 151500 ) ( * 160500 )
+      NEW metal2 ( 111600 130500 ) ( 114000 * )
+      NEW metal2 ( 111600 130500 ) ( * 151500 )
+      NEW metal2 ( 133200 136500 ) ( * 151500 )
+      NEW metal3 ( 116400 151500 ) ( 133200 * )
+      NEW metal1 ( 116400 142500 ) M2_M1
+      NEW metal2 ( 116400 151500 ) M3_M2
+      NEW metal2 ( 104400 151500 ) M3_M2
+      NEW metal1 ( 104400 160500 ) M2_M1
+      NEW metal1 ( 114000 130500 ) M2_M1
+      NEW metal2 ( 111600 151500 ) M3_M2
+      NEW metal1 ( 133200 136500 ) M2_M1
+      NEW metal2 ( 133200 151500 ) M3_M2 ;
+    - _21_ ( _44_ B ) ( _43_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 104400 136500 ) ( * 139500 )
+      NEW metal3 ( 104400 136500 ) ( 121200 * )
+      NEW metal1 ( 104400 139500 ) M2_M1
+      NEW metal2 ( 104400 136500 ) M3_M2
+      NEW metal1 ( 121200 136500 ) M2_M1
+      NEW metal2 ( 121200 136500 ) M3_M2 ;
+    - _22_ ( _48_ B ) ( _45_ Y ) + USE SIGNAL
+      + ROUTED metal3 ( 78000 73500 ) ( 90000 * )
+      NEW metal2 ( 114000 61500 ) ( * 79500 )
+      NEW metal3 ( 97200 61500 ) ( 114000 * )
+      NEW metal2 ( 97200 61500 ) ( * 70500 )
+      NEW metal3 ( 90000 70500 ) ( 97200 * )
+      NEW metal3 ( 90000 70500 ) ( * 73500 )
+      NEW metal1 ( 78000 73500 ) M2_M1
+      NEW metal2 ( 78000 73500 ) M3_M2
+      NEW metal1 ( 114000 79500 ) M2_M1
+      NEW metal2 ( 114000 61500 ) M3_M2
+      NEW metal2 ( 97200 61500 ) M3_M2
+      NEW metal2 ( 97200 70500 ) M3_M2 ;
+    - _23_ ( _47_ C ) ( _46_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 138000 139500 ) ( * 157500 )
+      NEW metal3 ( 109200 157500 ) ( 138000 * )
+      NEW metal1 ( 138000 139500 ) M2_M1
+      NEW metal2 ( 138000 157500 ) M3_M2
+      NEW metal1 ( 109200 157500 ) M2_M1
+      NEW metal2 ( 109200 157500 ) M3_M2 ;
+    - _24_ ( _49_ B ) ( _48_ Y ) + USE SIGNAL
+      + ROUTED metal2 ( 106800 58500 ) ( * 76500 )
+      NEW metal3 ( 92400 58500 ) ( 106800 * )
+      NEW metal2 ( 92400 43500 ) ( * 58500 )
+      NEW metal1 ( 106800 76500 ) M2_M1
+      NEW metal2 ( 106800 58500 ) M3_M2
+      NEW metal2 ( 92400 58500 ) M3_M2
+      NEW metal1 ( 92400 43500 ) M2_M1 ;
+    - clk ( PIN clk ) ( clkbuf_0_clk A ) + USE CLOCK
+      + ROUTED metal2 ( 135600 450 0 ) ( * 1500 )
+      NEW metal2 ( 135600 1500 ) ( 138000 * )
+      NEW metal2 ( 138000 450 ) ( * 1500 )
+      NEW metal2 ( 138000 450 ) ( 157200 * )
+      NEW metal2 ( 102000 94500 ) ( * 100500 )
+      NEW metal3 ( 102000 94500 ) ( 157200 * )
+      NEW metal2 ( 157200 450 ) ( * 94500 )
+      NEW metal1 ( 102000 100500 ) M2_M1
+      NEW metal2 ( 102000 94500 ) M3_M2
+      NEW metal2 ( 157200 94500 ) M3_M2 ;
+    - clknet_0_clk ( clkbuf_1_1__f_clk A ) ( clkbuf_1_0__f_clk A ) ( clkbuf_0_clk Y ) + USE CLOCK
+      + ROUTED metal2 ( 130800 76500 ) ( * 103500 )
+      NEW metal2 ( 126000 76500 ) ( 130800 * )
+      NEW metal2 ( 126000 70500 ) ( * 76500 )
+      NEW metal2 ( 123600 70500 ) ( 126000 * )
+      NEW metal2 ( 123600 52500 ) ( * 70500 )
+      NEW metal3 ( 94800 52500 ) ( 123600 * )
+      NEW metal2 ( 94800 40500 ) ( * 52500 )
+      NEW metal2 ( 111600 154500 ) ( * 160500 )
+      NEW metal3 ( 111600 154500 ) ( 128400 * )
+      NEW metal2 ( 128400 103500 ) ( * 154500 )
+      NEW metal2 ( 128400 103500 ) ( 130800 * )
+      NEW metal1 ( 130800 103500 ) M2_M1
+      NEW metal2 ( 123600 52500 ) M3_M2
+      NEW metal2 ( 94800 52500 ) M3_M2
+      NEW metal1 ( 94800 40500 ) M2_M1
+      NEW metal1 ( 111600 160500 ) M2_M1
+      NEW metal2 ( 111600 154500 ) M3_M2
+      NEW metal2 ( 128400 154500 ) M3_M2 ;
+    - clknet_1_0__leaf_clk ( _50_ CLK ) ( _51_ CLK ) ( _53_ CLK ) ( _57_ CLK ) ( clkbuf_1_0__f_clk Y ) + USE CLOCK
+      + ROUTED metal2 ( 54000 40500 ) ( * 61500 )
+      NEW metal2 ( 51600 61500 ) ( 54000 * )
+      NEW metal2 ( 51600 61500 ) ( * 85500 )
+      NEW metal2 ( 51600 85500 ) ( 58800 * )
+      NEW metal2 ( 58800 85500 ) ( * 100500 )
+      NEW metal2 ( 135600 40500 ) ( * 43500 )
+      NEW metal3 ( 123600 43500 ) ( 135600 * )
+      NEW metal2 ( 147600 43500 ) ( * 79500 )
+      NEW metal3 ( 135600 43500 ) ( 147600 * )
+      NEW metal3 ( 54000 43500 ) ( 123600 * )
+      NEW metal1 ( 54000 40500 ) M2_M1
+      NEW metal1 ( 58800 100500 ) M2_M1
+      NEW metal2 ( 54000 43500 ) M3_M2
+      NEW metal1 ( 123600 43500 ) M2_M1
+      NEW metal2 ( 123600 43500 ) M3_M2
+      NEW metal1 ( 135600 40500 ) M2_M1
+      NEW metal2 ( 135600 43500 ) M3_M2
+      NEW metal1 ( 147600 79500 ) M2_M1
+      NEW metal2 ( 147600 43500 ) M3_M2 ;
+    - clknet_1_1__leaf_clk ( _52_ CLK ) ( _54_ CLK ) ( _55_ CLK ) ( _56_ CLK ) ( clkbuf_1_1__f_clk Y ) + USE CLOCK
+      + ROUTED metal2 ( 70800 151500 ) ( * 160500 )
+      NEW metal2 ( 61200 151500 ) ( 70800 * )
+      NEW metal2 ( 61200 139500 ) ( * 151500 )
+      NEW metal2 ( 70800 160500 ) ( * 163500 )
+      NEW metal2 ( 145200 160500 ) ( * 163500 )
+      NEW metal3 ( 140400 163500 ) ( 145200 * )
+      NEW metal2 ( 147600 139500 ) ( * 151500 )
+      NEW metal2 ( 145200 151500 ) ( 147600 * )
+      NEW metal2 ( 145200 151500 ) ( * 160500 )
+      NEW metal3 ( 70800 163500 ) ( 140400 * )
+      NEW metal1 ( 70800 160500 ) M2_M1
+      NEW metal1 ( 61200 139500 ) M2_M1
+      NEW metal2 ( 70800 163500 ) M3_M2
+      NEW metal1 ( 140400 163500 ) M2_M1
+      NEW metal2 ( 140400 163500 ) M3_M2
+      NEW metal1 ( 145200 160500 ) M2_M1
+      NEW metal2 ( 145200 163500 ) M3_M2
+      NEW metal1 ( 147600 139500 ) M2_M1 ;
+    - q[0] ( PIN q[0] ) ( _50_ Q ) ( _33_ A ) ( _30_ A ) ( _29_ A ) ( _28_ A ) + USE SIGNAL
+      + ROUTED metal2 ( 126000 31500 ) ( * 37500 )
+      NEW metal2 ( 126000 31500 ) ( 130800 * )
+      NEW metal2 ( 130800 450 0 ) ( * 31500 )
+      NEW metal2 ( 159600 25500 ) ( * 43500 )
+      NEW metal1 ( 130800 25500 ) ( 159600 * )
+      NEW metal2 ( 135600 73500 ) ( * 79500 )
+      NEW metal3 ( 135600 73500 ) ( 159600 * )
+      NEW metal2 ( 159600 43500 ) ( * 73500 )
+      NEW metal3 ( 126000 79500 ) ( 135600 * )
+      NEW metal2 ( 116400 73500 ) ( * 79500 )
+      NEW metal3 ( 116400 79500 ) ( 126000 * )
+      NEW metal1 ( 126000 37500 ) M2_M1
+      NEW metal1 ( 159600 43500 ) M2_M1
+      NEW metal1 ( 159600 25500 ) M2_M1
+      NEW metal1 ( 130800 25500 ) M2_M1
+      NEW metal1 ( 135600 79500 ) M2_M1
+      NEW metal2 ( 135600 73500 ) M3_M2
+      NEW metal2 ( 159600 73500 ) M3_M2
+      NEW metal1 ( 126000 79500 ) M2_M1
+      NEW metal2 ( 126000 79500 ) M3_M2
+      NEW metal2 ( 135600 79500 ) M3_M2
+      NEW metal1 ( 116400 73500 ) M2_M1
+      NEW metal2 ( 116400 79500 ) M3_M2 ;
+    - q[1] ( PIN q[1] ) ( _51_ Q ) ( _33_ B ) ( _30_ B ) ( _29_ B ) + USE SIGNAL
+      + ROUTED metal2 ( 128400 61500 ) ( * 73500 )
+      NEW metal2 ( 126000 61500 ) ( 128400 * )
+      NEW metal2 ( 126000 40500 ) ( * 61500 )
+      NEW metal2 ( 123600 40500 ) ( 126000 * )
+      NEW metal2 ( 123600 28500 ) ( * 40500 )
+      NEW metal2 ( 123600 28500 ) ( 126000 * )
+      NEW metal2 ( 126000 450 0 ) ( * 28500 )
+      NEW metal2 ( 138000 64500 ) ( * 76500 )
+      NEW metal3 ( 128400 64500 ) ( 138000 * )
+      NEW metal2 ( 118800 76500 ) ( * 82500 )
+      NEW metal3 ( 118800 82500 ) ( 138000 * )
+      NEW metal2 ( 138000 76500 ) ( * 82500 )
+      NEW metal2 ( 171600 64500 ) ( * 76500 )
+      NEW metal3 ( 138000 64500 ) ( 171600 * )
+      NEW metal1 ( 128400 73500 ) M2_M1
+      NEW metal1 ( 138000 76500 ) M2_M1
+      NEW metal2 ( 138000 64500 ) M3_M2
+      NEW metal2 ( 128400 64500 ) M3_M2
+      NEW metal1 ( 118800 76500 ) M2_M1
+      NEW metal2 ( 118800 82500 ) M3_M2
+      NEW metal2 ( 138000 82500 ) M3_M2
+      NEW metal1 ( 171600 76500 ) M2_M1
+      NEW metal2 ( 171600 64500 ) M3_M2 ;
+    - q[2] ( PIN q[2] ) ( _52_ Q ) ( _34_ A ) ( _33_ C ) ( _32_ A ) + USE SIGNAL
+      + ROUTED metal3 ( 109200 70500 ) ( 121200 * )
+      NEW metal2 ( 109200 25500 ) ( * 70500 )
+      NEW metal1 ( 109200 25500 ) ( 116400 * )
+      NEW metal2 ( 116400 450 0 ) ( * 25500 )
+      NEW metal2 ( 145200 100500 ) ( 150000 * )
+      NEW metal2 ( 145200 85500 ) ( * 100500 )
+      NEW metal3 ( 121200 85500 ) ( 145200 * )
+      NEW metal2 ( 121200 70500 ) ( * 85500 )
+      NEW metal3 ( 150000 100500 ) ( 159600 * )
+      NEW metal2 ( 171600 112500 ) ( * 136500 )
+      NEW metal2 ( 164400 112500 ) ( 171600 * )
+      NEW metal2 ( 164400 100500 ) ( * 112500 )
+      NEW metal3 ( 159600 100500 ) ( 164400 * )
+      NEW metal1 ( 121200 70500 ) M2_M1
+      NEW metal2 ( 121200 70500 ) M3_M2
+      NEW metal2 ( 109200 70500 ) M3_M2
+      NEW metal1 ( 109200 25500 ) M2_M1
+      NEW metal1 ( 116400 25500 ) M2_M1
+      NEW metal1 ( 150000 100500 ) M2_M1
+      NEW metal2 ( 145200 85500 ) M3_M2
+      NEW metal2 ( 121200 85500 ) M3_M2
+      NEW metal1 ( 159600 100500 ) M2_M1
+      NEW metal2 ( 159600 100500 ) M3_M2
+      NEW metal2 ( 150000 100500 ) M3_M2
+      NEW metal1 ( 171600 136500 ) M2_M1
+      NEW metal2 ( 164400 100500 ) M3_M2 ;
+    - q[3] ( PIN q[3] ) ( _53_ Q ) ( _37_ A ) ( _25_ A ) + USE SIGNAL
+      + ROUTED metal2 ( 92400 64500 ) ( * 100500 )
+      NEW metal3 ( 92400 64500 ) ( 102000 * )
+      NEW metal2 ( 102000 450 0 ) ( * 64500 )
+      NEW metal2 ( 82800 94500 ) ( * 103500 )
+      NEW metal3 ( 82800 94500 ) ( 92400 * )
+      NEW metal2 ( 58800 82500 ) ( 61200 * )
+      NEW metal2 ( 61200 82500 ) ( * 85500 )
+      NEW metal2 ( 61200 85500 ) ( 63600 * )
+      NEW metal2 ( 63600 85500 ) ( * 94500 )
+      NEW metal3 ( 63600 94500 ) ( 82800 * )
+      NEW metal1 ( 92400 100500 ) M2_M1
+      NEW metal2 ( 92400 64500 ) M3_M2
+      NEW metal2 ( 102000 64500 ) M3_M2
+      NEW metal1 ( 82800 103500 ) M2_M1
+      NEW metal2 ( 82800 94500 ) M3_M2
+      NEW metal2 ( 92400 94500 ) M3_M2
+      NEW metal1 ( 58800 82500 ) M2_M1
+      NEW metal2 ( 63600 94500 ) M3_M2 ;
+    - q[4] ( PIN q[4] ) ( _54_ Q ) ( _40_ A ) ( _26_ A ) + USE SIGNAL
+      + ROUTED metal2 ( 54000 67500 ) ( * 82500 )
+      NEW metal2 ( 85200 106500 ) ( * 136500 )
+      NEW metal2 ( 78000 106500 ) ( 85200 * )
+      NEW metal2 ( 78000 79500 ) ( * 106500 )
+      NEW metal2 ( 78000 79500 ) ( 80400 * )
+      NEW metal2 ( 80400 67500 ) ( * 79500 )
+      NEW metal2 ( 85200 139500 ) ( 87600 * )
+      NEW metal2 ( 85200 136500 ) ( * 139500 )
+      NEW metal2 ( 111600 450 0 ) ( * 67500 )
+      NEW metal3 ( 54000 67500 ) ( 111600 * )
+      NEW metal1 ( 54000 82500 ) M2_M1
+      NEW metal2 ( 54000 67500 ) M3_M2
+      NEW metal1 ( 85200 136500 ) M2_M1
+      NEW metal2 ( 80400 67500 ) M3_M2
+      NEW metal1 ( 87600 139500 ) M2_M1
+      NEW metal2 ( 111600 67500 ) M3_M2 ;
+    - q[5] ( PIN q[5] ) ( _55_ Q ) ( _45_ A ) ( _43_ A ) ( _42_ A ) + USE SIGNAL
+      + ROUTED metal2 ( 70800 55500 ) ( * 73500 )
+      NEW metal3 ( 70800 55500 ) ( 106800 * )
+      NEW metal2 ( 106800 450 0 ) ( * 55500 )
+      NEW metal3 ( 70800 139500 ) ( 97200 * )
+      NEW metal2 ( 70800 73500 ) ( * 139500 )
+      NEW metal2 ( 94800 163500 ) ( 97200 * )
+      NEW metal2 ( 97200 139500 ) ( * 163500 )
+      NEW metal2 ( 106800 139500 ) ( 109200 * )
+      NEW metal2 ( 109200 139500 ) ( * 142500 )
+      NEW metal3 ( 109200 139500 ) ( * 142500 )
+      NEW metal3 ( 97200 139500 ) ( 109200 * )
+      NEW metal1 ( 70800 73500 ) M2_M1
+      NEW metal2 ( 70800 55500 ) M3_M2
+      NEW metal2 ( 106800 55500 ) M3_M2
+      NEW metal1 ( 97200 139500 ) M2_M1
+      NEW metal2 ( 97200 139500 ) M3_M2
+      NEW metal2 ( 70800 139500 ) M3_M2
+      NEW metal1 ( 94800 163500 ) M2_M1
+      NEW metal1 ( 106800 139500 ) M2_M1
+      NEW metal2 ( 109200 142500 ) M3_M2 ;
+    - q[6] ( PIN q[6] ) ( _56_ Q ) ( _47_ A ) ( _46_ A ) ( _45_ B ) + USE SIGNAL
+      + ROUTED metal2 ( 73200 22500 ) ( * 76500 )
+      NEW metal1 ( 73200 22500 ) ( 121200 * )
+      NEW metal2 ( 121200 450 0 ) ( * 22500 )
+      NEW metal2 ( 130800 127500 ) ( * 139500 )
+      NEW metal3 ( 73200 127500 ) ( 130800 * )
+      NEW metal2 ( 73200 76500 ) ( * 127500 )
+      NEW metal2 ( 102000 127500 ) ( * 163500 )
+      NEW metal2 ( 169200 127500 ) ( * 163500 )
+      NEW metal3 ( 130800 127500 ) ( 169200 * )
+      NEW metal1 ( 73200 76500 ) M2_M1
+      NEW metal1 ( 73200 22500 ) M2_M1
+      NEW metal1 ( 121200 22500 ) M2_M1
+      NEW metal1 ( 130800 139500 ) M2_M1
+      NEW metal2 ( 130800 127500 ) M3_M2
+      NEW metal2 ( 73200 127500 ) M3_M2
+      NEW metal1 ( 102000 163500 ) M2_M1
+      NEW metal2 ( 102000 127500 ) M3_M2
+      NEW metal1 ( 169200 163500 ) M2_M1
+      NEW metal2 ( 169200 127500 ) M3_M2 ;
+    - q[7] ( PIN q[7] ) ( _57_ Q ) ( _48_ A ) + USE SIGNAL
+      + ROUTED metal2 ( 78000 37500 ) ( * 43500 )
+      NEW metal2 ( 99600 37500 ) ( * 79500 )
+      NEW metal2 ( 97200 450 0 ) ( * 37500 )
+      NEW metal2 ( 97200 37500 ) ( 99600 * )
+      NEW metal3 ( 78000 37500 ) ( 99600 * )
+      NEW metal1 ( 78000 43500 ) M2_M1
+      NEW metal2 ( 78000 37500 ) M3_M2
+      NEW metal2 ( 99600 37500 ) M3_M2
+      NEW metal1 ( 99600 79500 ) M2_M1 ;
+    - rst ( PIN rst ) ( _49_ A ) ( _28_ B ) ( _27_ A ) + USE SIGNAL
+      + ROUTED metal2 ( 87600 34500 ) ( * 37500 )
+      NEW metal2 ( 87600 450 ) ( * 34500 )
+      NEW metal2 ( 87600 450 ) ( 90000 * )
+      NEW metal2 ( 130800 37500 ) ( * 43500 )
+      NEW metal3 ( 130800 34500 ) ( * 37500 )
+      NEW metal2 ( 130800 73500 ) ( 133200 * )
+      NEW metal2 ( 130800 43500 ) ( * 73500 )
+      NEW metal2 ( 92400 450 0 ) ( * 1500 )
+      NEW metal2 ( 90000 1500 ) ( 92400 * )
+      NEW metal2 ( 90000 450 ) ( * 1500 )
+      NEW metal3 ( 87600 34500 ) ( 130800 * )
+      NEW metal2 ( 133200 73500 ) ( * 97500 )
+      NEW metal1 ( 87600 37500 ) M2_M1
+      NEW metal2 ( 87600 34500 ) M3_M2
+      NEW metal1 ( 130800 43500 ) M2_M1
+      NEW metal2 ( 130800 37500 ) M3_M2
+      NEW metal1 ( 133200 97500 ) M2_M1 ;
+END NETS
+END DESIGN

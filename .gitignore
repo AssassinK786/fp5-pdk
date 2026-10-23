@@ -1,0 +1,6 @@
+# full-text extract of a third-party report (copyright): cite, don't redistribute
+validation/butler/butler_report.txt
+# simulator scratch
+*.raw
+validation/butler/iv25.txt
+__pycache__/
