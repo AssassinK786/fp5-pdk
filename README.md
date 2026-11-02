@@ -16,14 +16,18 @@ reference views.
 fp5A/
   libs.tech/
     librelane/            LibreLane PDK + standard-cell config, tracks
-    klayout/              DRC/LVS decks, .lyt/.lyp/.map, OpenRCX rules
+    klayout/tech/         .lyt/.lyp/.map, layer map, wire RC
+    klayout/drc/          fp5A.drc
+    klayout/lvs/          fp5A.lvs
+    klayout/pex/          fp5A.rcx
+    klayout/pcells/       fp5_pcells.py
     magic/                Magic technology + startup
     netgen/               Netgen LVS setup
     ngspice/              BSIM3 corners, passives, Monte Carlo
     xschem/               xschemrc + device symbols
   libs.ref/
-    fp5_osu/              OSU 0.5 um cells + FP5 tie cells
-      gds/ lef/ lib/ spice/ verilog/ cdl/ doc/
+    fp5_osu/              OSU 0.5 um cells + tie/physical cells
+      techlef/ gds/ lef/ lib/ spice/ verilog/ cdl/ doc/
 ```
 
 ## Quick start
@@ -52,9 +56,17 @@ the `cnt8` example. The run completed through GDS streamout and KLayout DRC:
 setup/hold WNS at all three timing corners, 0 power-grid violations, and
 GDS/DEF/SPEF/SDF were written to `examples/librelane/cnt8/runs/RUN_*/final/`.
 IR drop was extracted with the edge-ring PDN after tap/decap insertion:
-worst-case vdd drop 0.882 V (17.65 %) and gnd drop 0.759 V (15.17 %). `VSRC_LOC_FILES` is not defined, so
+worst-case vdd drop 0.602 V (12.04 %) and gnd drop 0.565 V (11.29 %). `VSRC_LOC_FILES` is not defined, so
 the IR numbers are first-order. Cell-level MOS LVS passes (NAND2X1/TIEHI and
 the OSU cell logs); analog passive LVS is not yet in the deck.
+
+Routing utilization was improved by raising `FP_CORE_UTIL` from 15 % to 35 %
+after adding the TAP/DECAP/ENDCAP cells. The same design went from 80,352 um^2
+core / 7,103 um routed wire to 34,992 um^2 core / 6,019 um routed wire, with
+0 route DRC. `DRT_MIN_LAYER` is `metal1`, so the detailed router can use local
+metal1 for pin access while global routing stays on metal2/metal3. The sweep
+and trade-offs are in `docs/ROUTING_UTILIZATION.md`; `make util` prints the
+current numbers.
 
 ## What is in the PDK
 

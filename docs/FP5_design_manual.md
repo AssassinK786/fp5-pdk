@@ -24,13 +24,13 @@ paper reproductions, teaching and "what would this be at 0.5 um" questions.
 fp5A/
   libs.tech/
     librelane/config.tcl, librelane/fp5_osu/config.tcl, tracks.info
-    klayout/fp5A.drc, fp5A.lvs, fp5A.lyt, fp5A.lyp, fp5A.map, pex/fp5A.rcx
+    klayout/tech/fp5A.lyt, tech/fp5A.lyp, tech/fp5A.map, drc/fp5A.drc, lvs/fp5A.lvs, pex/fp5A.rcx
     magic/fp5A.tech, fp5A.magicrc, fp5A.tcl
     netgen/fp5A_setup.tcl
     ngspice/fp5.lib, fp5_mc.lib, fp5_passives.lib, fp5_<corner>_cards.sp
     xschem/xschemrc, symbols/
   libs.ref/fp5_osu/
-    gds/ lef/ lib/ spice/ verilog/ cdl/ doc/
+    techlef/ gds/ lef/ lib/ spice/ verilog/ cdl/ doc/
 ```
 
 The legacy `models/`, `passives/`, `digital/`, `klayout/`, `validation/` and
@@ -45,7 +45,7 @@ poly2 contact 55, glass 52, hi-res 34. Labels: metal1 text 109/0; metal2
 
 ## 4. Design rules (lambda = 0.30 um)
 
-`libs.tech/klayout/fp5A.drc` checks the public MOSIS SCMOS SUBM rules:
+`libs.tech/klayout/drc/fp5A.drc` checks the public MOSIS SCMOS SUBM rules:
 widths/spacings/enclosures for nwell, active, poly, select, contacts,
 metal1-3, vias, poly2, glass and the hi-res implant. It also has generic
 antenna checks. The deck is a subset; density, latch-up, pad/ESD and real
@@ -85,13 +85,14 @@ Idsat, tox). Digital timing views: tt 5.0 V, ff 5.5 V, ss 4.5 V at 25 C.
   PDK_ROOT=$HOME/pdks PDK=fp5A ./tools/run_librelane.sh \
       examples/librelane/cnt8/config.yaml
   ```
-  The wrapper runs the KLayout streamout and DRC, and skips the Magic LEF
-  antenna check and the power-grid checker. `examples/librelane/cnt8` is a
-  routed 8-bit counter; final GDS/DEF/ODB/SPEF are in `runs/RUN_*/final/`.
+  The wrapper runs KLayout streamout/DRC, PDN/IR drop and skips only the Magic
+  LEF antenna check. `examples/librelane/cnt8` is a routed 8-bit counter; final
+  GDS/DEF/ODB/SPEF are in `runs/RUN_*/final/`. The default `FP_CORE_UTIL` is
+  35 % with `FP_TAPCELL_DIST` 26 um; TAP/DECAP/ENDCAP are inserted automatically.
 - Legacy digital: `digital/flow/synth.sh` + `digital/flow/pnr.tcl` (Yosys /
   OpenROAD). `pnr.tcl` now writes a GDS as well as DEF/ODB.
-- DRC: `klayout -b -r libs.tech/klayout/fp5A.drc -rd input=x.gds -rd report=x.lyrdb`.
-- LVS: `klayout -b -r libs.tech/klayout/fp5A.lvs -rd input=x.gds -rd schematic=x.sp -rd top=CELL`.
+- DRC: `klayout -b -r libs.tech/klayout/drc/fp5A.drc -rd input=x.gds -rd report=x.lyrdb`.
+- LVS: `klayout -b -r libs.tech/klayout/lvs/fp5A.lvs -rd input=x.gds -rd schematic=x.sp -rd top=CELL`.
 
 ## 8. Validation
 

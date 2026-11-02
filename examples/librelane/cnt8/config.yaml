@@ -2,7 +2,7 @@ DESIGN_NAME: cnt8
 VERILOG_FILES: dir::src/cnt8.v
 CLOCK_PORT: clk
 CLOCK_PERIOD: 30
-FP_CORE_UTIL: 15
+FP_CORE_UTIL: 35
 PL_TARGET_DENSITY_PCT: 50
 
 # KLayout is the current signoff/streamout tool.

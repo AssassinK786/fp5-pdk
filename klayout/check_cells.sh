@@ -21,7 +21,7 @@ for c in $cells; do
   case "$c" in TIEHI|TIELO) gg=$GT; ss=$ST;; TAP|DECAP|ENDCAP) gg=$GP; ss=$SP;; *) gg=$G; ss=$S;; esac
   drc_rep=$O/${c}_drc.lyrdb
   rm -f "$drc_rep"
-  klayout -b -zz -r "$P/libs.tech/klayout/fp5A.drc" \
+  klayout -b -zz -r "$P/libs.tech/klayout/drc/fp5A.drc" \
     -rd input="$gg" -rd top="$c" -rd report="$drc_rep" \
     > "$O/${c}_drc.log" 2>&1
   if [ ! -f "$drc_rep" ]; then
@@ -32,7 +32,7 @@ for c in $cells; do
 
   if grep -qiE "^\.subckt $c\b" "$ss"; then
     lvs_rep=$O/${c}.lvsdb
-    klayout -b -zz -r "$P/libs.tech/klayout/fp5A.lvs" \
+    klayout -b -zz -r "$P/libs.tech/klayout/lvs/fp5A.lvs" \
       -rd input="$gg" -rd schematic="$ss" -rd top="$c" -rd report="$lvs_rep" \
       > "$O/${c}_lvs.log" 2>&1
     if grep -q "LVS MATCH" "$O/${c}_lvs.log"; then l=MATCH; else l=MISMATCH; nl=$((nl+1)); fi

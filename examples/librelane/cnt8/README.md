@@ -25,5 +25,5 @@ A successful run produces:
 
 The 2026-11-02 verification run had 0 KLayout DRC errors, 0 detailed-route DRC
 errors, 0 antenna violations, 0 setup/hold WNS at tt/ff/ss and 0 power-grid
-violations after TAP/DECAP/ENDCAP insertion. Worst-case IR drop: vdd 0.882 V,
-gnd 0.759 V.
+violations after TAP/DECAP/ENDCAP insertion. Worst-case IR drop: vdd 0.602 V,
+gnd 0.565 V.

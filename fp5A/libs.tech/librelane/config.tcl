@@ -26,7 +26,7 @@ set ::env(TIMING_VIOLATION_CORNERS) "*"
 # One technology LEF for all corners.
 set ::env(TECH_LEFS) [dict create]
 dict set ::env(TECH_LEFS) "nom_*" \
-    "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lef/${::env(STD_CELL_LIBRARY)}_tech.lef"
+    "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/techlef/${::env(STD_CELL_LIBRARY)}_tech.lef"
 
 # Floorplan / placement.
 set ::env(PLACE_SITE) "core"
@@ -42,7 +42,7 @@ set ::env(IO_PIN_V_LAYER) "metal2"
 set ::env(METAL_LAYER_NAMES) "metal1 metal2 metal3"
 set ::env(RT_MIN_LAYER) "metal2"
 set ::env(RT_MAX_LAYER) "metal3"
-set ::env(DRT_MIN_LAYER) "metal2"
+set ::env(DRT_MIN_LAYER) "metal1"
 set ::env(GRT_LAYER_ADJUSTMENTS) "0,0,0"
 
 # Signoff / streamout.
@@ -98,11 +98,11 @@ set ::env(SYNTH_TIELO_CELL) "TIELO/Y"
 # Signoff decks.  KLayout is used for streamout and DRC.  The Magic/Netgen
 # files are provided for manual/analog use; the default LibreLane flow is
 # configured to use KLayout only until the Magic cell views are generated.
-set ::env(KLAYOUT_TECH) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/fp5A.lyt"
-set ::env(KLAYOUT_PROPERTIES) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/fp5A.lyp"
-set ::env(KLAYOUT_DEF_LAYER_MAP) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/fp5A.map"
-set ::env(KLAYOUT_DRC_RUNSET) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/fp5A.drc"
-set ::env(KLAYOUT_LVS_SCRIPT) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/fp5A.lvs"
+set ::env(KLAYOUT_TECH) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/tech/fp5A.lyt"
+set ::env(KLAYOUT_PROPERTIES) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/tech/fp5A.lyp"
+set ::env(KLAYOUT_DEF_LAYER_MAP) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/tech/fp5A.map"
+set ::env(KLAYOUT_DRC_RUNSET) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/drc/fp5A.drc"
+set ::env(KLAYOUT_LVS_SCRIPT) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/lvs/fp5A.lvs"
 
 set ::env(MAGICRC) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/fp5A.magicrc"
 set ::env(MAGIC_TECH) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/fp5A.tech"

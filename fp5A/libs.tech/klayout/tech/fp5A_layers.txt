@@ -1,0 +1,19 @@
+# FP5 GDS layer map (MOSIS SCMOS / SCN3ME_SUBM numbering, from the public qflow Magic tech SCN3ME_SUBM.30.tech)
+# name        gds  dt
+nwell         42   0
+pwell         41   0
+active        43   0
+pselect       44   0
+nselect       45   0
+poly          46   0
+poly_contact  47   0
+active_contact 48  0
+poly2         56   0
+poly2_contact 55   0
+metal1        49   0
+via1          50   0
+metal2        51   0
+via2          61   0
+metal3        62   0
+glass         52   0
+hires         34   0
