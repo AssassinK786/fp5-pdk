@@ -1,11 +1,11 @@
-# FP5 KLayout PCell library (PERSONAL USE). Devices drawn on the MOSIS SCMOS SUBM rules (lambda = 0.30 um) that fp5.drc checks.
+# FP5 KLayout PCell library (research PDK). Devices drawn on the MOSIS SCMOS SUBM rules (lambda = 0.30 um) that fp5.drc checks.
 # Load in KLayout: Macros > run this file (or put it in ~/.klayout/pymacros and set "autorun"). Library name: "FP5".
 # Cells: nmos, pmos (W, L, fingers, body tap), rpoly (poly resistor), cpoly (poly1-poly2 capacitor), gring (guard ring).
 import pya
 
 LAM = 0.30                        # um
 LY = {'nwell': (42, 0), 'active': (43, 0), 'psel': (44, 0), 'nsel': (45, 0), 'poly': (46, 0), 'pcon': (47, 0),
-      'acon': (48, 0), 'm1': (49, 0), 'poly2': (56, 0), 'p2con': (55, 0)}
+      'acon': (48, 0), 'm1': (49, 0), 'poly2': (56, 0), 'p2con': (55, 0), 'hires': (34, 0)}
 
 def snap(v):                      # um -> integer lambda count (rounded up)
     n = v / LAM
@@ -67,21 +67,45 @@ class PMOS(MOS):
     def __init__(self): super().__init__(True)
 
 class RPOLY(_Base):
-    """Poly resistor: body W x L (um), contact heads 4 lambda with one 2x2 contact each. R ~ 22.5 ohm/sq x L/W + 2 x 15.7 ohm."""
+    """Poly resistor: body W x L (um), contact heads with one 2x2 contact each.
+    R ~ Rsh x L/W + 2 x contact resistance.  Subclasses switch the body and
+    contact layers for poly2 and hi-res poly2."""
+    LAYER = 'poly'
+    CONTACT = 'pcon'
+    MINW = 2 * LAM
+    MINL = 4 * LAM
+    HEAD = 4
+    HEADLEN = 4
+    NAME = 'rpoly'
     def __init__(self):
         super().__init__()
         self.param("w", self.TypeDouble, "Width (um)", default=1.2)
         self.param("l", self.TypeDouble, "Length (um)", default=12.0)
-    def display_text_impl(self): return f"rpoly W={self.w} L={self.l}"
-    def coerce_parameters_impl(self): self.w = max(self.w, 2 * LAM); self.l = max(self.l, 4 * LAM)
+    def display_text_impl(self): return f"{self.NAME} W={self.w} L={self.l}"
+    def coerce_parameters_impl(self): self.w = max(self.w, self.MINW); self.l = max(self.l, self.MINL)
     def produce_impl(self):
         ly = self.layout; u = 1.0 / ly.dbu * LAM; L = self._lymap(ly); c = self.cell
-        W, Ln = snap(self.w), snap(self.l); H = max(W, 4)
-        self._box(c, L['poly'], 0, 0, Ln, W, u)
-        for x0 in (-4, Ln):
-            self._box(c, L['poly'], x0, (W - H) / 2, x0 + 4, (W + H) / 2, u)
-            self._box(c, L['pcon'], x0 + 1, W / 2 - 1, x0 + 3, W / 2 + 1, u)
-            self._box(c, L['m1'], x0, W / 2 - 2, x0 + 4, W / 2 + 2, u)
+        W, Ln = snap(self.w), snap(self.l); H = max(W, self.HEAD)
+        body, con = L[self.LAYER], L[self.CONTACT]
+        self._box(c, body, 0, 0, Ln, W, u)
+        for x0 in (-self.HEADLEN, Ln):
+            self._box(c, body, x0, (W - H) / 2, x0 + self.HEADLEN, (W + H) / 2, u)
+            self._box(c, con, x0 + 1, W / 2 - 1, x0 + 3, W / 2 + 1, u)
+            self._box(c, L['m1'], x0, W / 2 - 2, x0 + self.HEADLEN, W / 2 + 2, u)
+
+class RPOLY2(RPOLY):
+    """Poly2 resistor (40 ohm/sq)."""
+    LAYER = 'poly2'; CONTACT = 'p2con'; MINW = 5 * LAM; MINL = 5 * LAM
+    HEAD = 5; HEADLEN = 5; NAME = 'rpoly2'
+
+class RHR(RPOLY2):
+    """Hi-res poly2 resistor (~1030 ohm/sq) with the hires implant marker."""
+    NAME = 'rhr'
+    def produce_impl(self):
+        super().produce_impl()
+        ly = self.layout; u = 1.0 / ly.dbu * LAM; L = self._lymap(ly); c = self.cell
+        W, Ln = snap(self.w), snap(self.l)
+        self._box(c, L['hires'], 0, 0, Ln, W, u)
 
 class CPOLY(_Base):
     """Poly1-poly2 capacitor: poly2 top plate W x L (um) with a contact grid, poly1 bottom plate enclosing by 2 lambda plus a
@@ -131,8 +155,8 @@ class GRING(_Base):
 
 class FP5Lib(pya.Library):
     def __init__(self):
-        self.description = "FP5 0.5 um 5 V devices (PERSONAL USE)"
-        for n, cls in (("nmos", NMOS), ("pmos", PMOS), ("rpoly", RPOLY), ("cpoly", CPOLY), ("gring", GRING)):
+        self.description = "FP5 0.5 um 5 V devices (research PDK)"
+        for n, cls in (("nmos", NMOS), ("pmos", PMOS), ("rpoly", RPOLY), ("rpoly2", RPOLY2), ("rhr", RHR), ("cpoly", CPOLY), ("gring", GRING)):
             self.layout().register_pcell(n, cls())
         self.register("FP5")
 

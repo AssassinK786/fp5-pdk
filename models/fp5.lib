@@ -1,5 +1,5 @@
 * RECENTRED 2026-10-21: RDSW x 0.268 (N) / x 0.706 (P) in all corners so tt matches lot T89Y Idss (models/recentre.py)
-* FP5 (PERSONAL USE, not a foundry deliverable): AMI/onsemi C5 0.5 um BSIM3 corners. See build_corners.py.
+* FP5 (research PDK, not a foundry deliverable): AMI/onsemi C5 0.5 um BSIM3 corners. See build_corners.py.
 * Typical = MOSIS lot T89Y (2009). Corners = +-3 sigma of 105 MOSIS C5 lots. Vdd 5 V (3.3 V usable). Drawn L >= 0.6 um.
 * Use: .lib "fp5.lib" tt   (or ff ss fs sf); devices fp5n / fp5p (4-terminal), give AS/AD/PS/PD for junction caps.
 .lib tt

@@ -1,4 +1,4 @@
-* Butler 2005 low-voltage Schottky BGR (Appendix A "Final Design Netlist") on FP5 (PERSONAL USE)
+* Butler 2005 low-voltage Schottky BGR (Appendix A "Final Design Netlist") on FP5 (research PDK)
 * Topology, sizes (lambda, scale 0.3u) and resistors exactly as published; MOSFET models T4BP -> FP5 tt/ff/ss,
 * SCHOTTKY -> fp5_schottky, RMODEL kept as published (TC1 = 0.002).
 .option scale=0.3u

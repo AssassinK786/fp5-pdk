@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<technology>
+ <name>fp5A</name>
+ <description>FP5 0.5 um 5 V research PDK (three aluminium layers)</description>
+ <dbu>0.001</dbu>
+ <base-path></base-path>
+ <original-base-path></original-base-path>
+ <layer-properties_file>fp5A.lyp</layer-properties_file>
+ <add-other-layers>true</add-other-layers>
+ <default-grids>0.3,0.15,0.1,0.05,0.01</default-grids>
+ <reader-options>
+  <gds2>
+   <box-mode>1</box-mode>
+   <allow-big-records>true</allow-big-records>
+   <allow-multi-xy-records>true</allow-multi-xy-records>
+  </gds2>
+  <common>
+   <create-other-layers>true</create-other-layers>
+   <layer-map>layer_map()</layer-map>
+   <enable-properties>true</enable-properties>
+   <enable-text-objects>true</enable-text-objects>
+  </common>
+  <lefdef>
+   <read-all-layers>true</read-all-layers>
+   <layer-map>layer_map()</layer-map>
+   <dbu>0.001</dbu>
+   <produce-net-names>true</produce-net-names>
+   <net-property-name>#1</net-property-name>
+   <produce-inst-names>true</produce-inst-names>
+   <inst-property-name>#1</inst-property-name>
+   <produce-pin-names>false</produce-pin-names>
+   <pin-property-name>#1</pin-property-name>
+   <produce-cell-outlines>true</produce-cell-outlines>
+   <cell-outline-layer>OUTLINE</cell-outline-layer>
+   <produce-placement-blockages>true</produce-placement-blockages>
+   <placement-blockage-layer>PLACEMENT_BLK</placement-blockage-layer>
+   <produce-regions>true</produce-regions>
+   <region-layer>REGIONS</region-layer>
+   <produce-via-geometry>true</produce-via-geometry>
+   <via_geometry-suffix-string/>
+   <via_geometry-datatype-string>0</via_geometry-datatype-string>
+   <produce-pins>true</produce-pins>
+   <pins-suffix-string>.PIN</pins-suffix-string>
+   <pins-datatype-string>2</pins-datatype-string>
+   <produce-lef-pins>true</produce-lef-pins>
+   <lef_pins-suffix-string>.PIN</lef_pins-suffix-string>
+   <lef_pins-datatype-string>2</lef_pins-datatype-string>
+   <produce-lef-obstructions>true</produce-lef-obstructions>
+   <lef_obs-suffix-string>.OBS</lef_obs-suffix-string>
+   <lef_obs-datatype-string>4</lef_obs-datatype-string>
+  </lefdef>
+ </reader-options>
+</technology>

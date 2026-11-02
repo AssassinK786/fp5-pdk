@@ -1,8 +1,11 @@
-# FP5 design manual (v1.0, 2026-10-23) - free PDK, 0.5 um, 5 V (PERSONAL USE, not a foundry PDK)
-FP5 models the AMI / onsemi C5 0.5 um process from public data only. It is not fabricable as-is. Use it for architecture studies,
+# FP5A design manual (v1.1, 2026-11-02) - free PDK, 0.5 um, 5 V
+
+FP5A models the AMI / onsemi C5 0.5 um process from public data only. It is not
+a foundry PDK and is not fabricable as-is. Use it for architecture studies,
 paper reproductions, teaching and "what would this be at 0.5 um" questions.
 
 ## 1. Process summary (C5 class, MOSIS lot medians)
+
 | item | value |
 |---|---|
 | drawn L min / lambda | 0.6 um / 0.30 um (MOSIS SCMOS SUBM) |
@@ -15,63 +18,102 @@ paper reproductions, teaching and "what would this be at 0.5 um" questions.
 | poly / poly2 / hi-res poly | 22.4 / 41 / ~1030 ohm/sq |
 | poly1-poly2 cap | 0.85-0.90 fF/um^2 |
 
-## 2. Layers (GDS, MOSIS SCMOS numbering) - klayout/layers.txt
-nwell 42, active 43, pselect 44, nselect 45, poly 46, poly contact 47, active contact 48, metal1 49, via1 50, metal2 51,
-via2 61, metal3 62, poly2 56, poly2 contact 55, glass 52, hi-res 34. Labels: metal1 text 109/0.
+## 2. Package layout (open_pdks)
 
-## 3. Design rules (lambda = 0.30 um) - klayout/fp5.drc
-| rule | value | rule | value |
-|---|---|---|---|
-| W.1 nwell width | 12 | W.2 nwell space | 6 |
-| W.3/W.4 n+ to nwell / nwell enclosure of p+ | 6 / 6 | A.1/A.2 active width / space | 3 / 3 |
-| P.1/P.2 poly width / space | 2 / 3 | P.4 field poly to active | 1 |
-| P.5 S/D extension past gate | 3 | P.6 gate end cap | 2 |
-| S.2 select enclosure of active | 2 | C.1/C.2 contact size / space | 2 / 3 |
-| C.3/C.4/C.9 enclosure by active / poly / metal1 | 1 | C.7 poly contact to active | 2 |
-| C.8 active contact to gate | 2 | M1.1/M1.2 metal1 width / space | 3 / 3 |
-| V1.1-V1.4 via1 2, space 3, enclosed 1 by M1 and M2 | | M2.1/M2.2 | 3 / 3 |
-| V2.1-V2.4 via2 2, space 3, M2 1, M3 2 | | M3.1/M3.2 | 5 / 3 |
-| E.1/E.2 poly2 width / space | 5 / 3 | G.1 glass opening | 10 |
-| ANT.1-3 antenna ratio (GENERIC) | 400 | | |
-Not provided: density, latch-up tap spacing, pad / ESD rules (no public source; the AMI C5X manual is confidential and unused).
+```text
+fp5A/
+  libs.tech/
+    librelane/config.tcl, librelane/fp5_osu/config.tcl, tracks.info
+    klayout/fp5A.drc, fp5A.lvs, fp5A.lyt, fp5A.lyp, fp5A.map, pex/fp5A.rcx
+    magic/fp5A.tech, fp5A.magicrc, fp5A.tcl
+    netgen/fp5A_setup.tcl
+    ngspice/fp5.lib, fp5_mc.lib, fp5_passives.lib, fp5_<corner>_cards.sp
+    xschem/xschemrc, symbols/
+  libs.ref/fp5_osu/
+    gds/ lef/ lib/ spice/ verilog/ cdl/ doc/
+```
 
-## 4. Devices and models
+The legacy `models/`, `passives/`, `digital/`, `klayout/`, `validation/` and
+`tech/` directories are the source views and are kept for reference.
+
+## 3. Layers (GDS, MOSIS SCMOS numbering)
+
+nwell 42, active 43, pselect 44, nselect 45, poly 46, poly contact 47, active
+contact 48, metal1 49, via1 50, metal2 51, via2 61, metal3 62, poly2 56,
+poly2 contact 55, glass 52, hi-res 34. Labels: metal1 text 109/0; metal2
+110/0; metal3 111/0.
+
+## 4. Design rules (lambda = 0.30 um)
+
+`libs.tech/klayout/fp5A.drc` checks the public MOSIS SCMOS SUBM rules:
+widths/spacings/enclosures for nwell, active, poly, select, contacts,
+metal1-3, vias, poly2, glass and the hi-res implant. It also has generic
+antenna checks. The deck is a subset; density, latch-up, pad/ESD and real
+foundry antenna limits are not provided (no public source).
+
+## 5. Devices and models
+
 | device | model / cell | notes |
 |---|---|---|
-| NMOS / PMOS | fp5n / fp5p in models/fp5.lib, `.lib "fp5.lib" tt` (ff ss fs sf) | BSIM3v3.1 (ngspice LEVEL 8, HSPICE 49); give AS/AD/PS/PD |
-| mismatch | fp5n_mm / fp5p_mm in models/fp5_mc.lib `mm` | A_VT 7.7 / 11.9 mV um, A_beta 1.5 % um (estimates) |
-| resistors | rpoly, rpoly2, rhr, rnwell, rndiff, rpdiff | passives/fp5_passives.lib `devices` + `res_typ / res_low / res_high` |
-| capacitor | cpoly (poly1-poly2) | +-57 % at 3 sigma (lot spread 19 %) |
-| diodes, substrate PNP | dnwell, dnplus, dpplus, c5pnp | PNP is an estimate |
-| Schottky (EXPERIMENTAL) | fp5_schottky (metal1 on n-well, 0.25 um2 unit; area factor = contacts) | fit to Butler 2005 measured MOSIS 0.5 um data: n 1.07, Rs 2.58 k, -0.56 mV/C; not an SCMOS device |
-Corners: tt / ff / ss / fs / sf = typical and +-3 sigma of 105 MOSIS C5 lots (Vth, Idsat, tox). Timing libraries: ff 5.5 V,
-tt 5.0 V, ss 4.5 V.
+| NMOS / PMOS | `fp5n` / `fp5p` in `libs.tech/ngspice/fp5.lib` | BSIM3v3.1 (ngspice LEVEL 8, HSPICE 49); `.lib "fp5.lib" tt` (ff ss fs sf); give AS/AD/PS/PD |
+| mismatch | `fp5n_mm` / `fp5p_mm` in `fp5_mc.lib` `mm` | A_VT 7.7 / 11.9 mV um, A_beta 1.5 % um (estimates) |
+| global MC | `fp5n_g` / `fp5p_g` in `fp5_mc.lib` `mc_global` | one lot draw per run, shared by all instances |
+| resistors | `rpoly`, `rpoly2`, `rhr`, `rnwell`, `rndiff`, `rpdiff` | `fp5_passives.lib devices` + `res_typ/res_low/res_high` |
+| capacitor | `cpoly` (poly1-poly2) | +-57 % at 3 sigma (lot spread 19 %) |
+| diodes / PNP | `dnwell`, `dnplus`, `dpplus`, `c5pnp` | PNP is an estimate |
+| Schottky | `fp5_schottky` | EXPERIMENTAL, fitted to Butler 2005 data |
 
-## 5. Layout cells
-- PCells (klayout/pcells/fp5_pcells.py, library "FP5"): nmos, pmos (W, L, fingers, tap), rpoly, cpoly, gring. DRC clean; LVS extracts the
-  drawn W/L/fingers. Body taps (tap=True default) and gring guard ring (p+ or n+ in n-well) included. TODO: poly2 and hi-res resistor PCells.
-- Standard cells: OSU 0.5 um (digital/gds, lef, lib, spice, verilog); all 33 cells DRC 0 + LVS match with KLayout 0.30.5
-  (klayout/check_cells.sh). Liberty re-characterized 2026-10-23 on the recentred models (tt/ff/ss); TBUFX1/X2 timing scaled from OSU.
-- Tie cells TIEHI / TIELO (digital/tiecells: GDS, SPICE; also in LEF/lib/verilog): INVX1 with the gate strapped to a rail in
-  metal1, DRC 0 / LVS match. synth.sh maps constants to them (setundef -zero + hilomap).
+Corners: tt/ff/ss/fs/sf = typical and +-3 sigma of 105 MOSIS C5 lots (Vth,
+Idsat, tox). Digital timing views: tt 5.0 V, ff 5.5 V, ss 4.5 V at 25 C.
 
-## 6. Flows
-- Analog: ngspice with `.lib` lines above.
-- Digital: `digital/flow/synth.sh TOP outdir rtl.v` then `TOP=.. NET=outdir/TOP.v OUT=outdir openroad -no_init -exit
-  digital/flow/pnr.tcl` (floorplan, place, CTS, repair, global + detailed route; signals on metal2-3, metal1 for pins;
-  THREADS env, default 4; NO_DR=1 skips detailed route). Source digital/flow/env.sh first. Regression: examples/dr_smoke (8-bit
-  counter, routed, 0 route DRC, 15 s); examples/avr_regress (AVR core, placed timing 22.6 ns at 30 ns; detailed route optional, 30+ min).
-- DRC: `klayout -b -r klayout/fp5.drc -rd input=x.gds -rd report=x.lyrdb`; LVS: `klayout -b -r klayout/fp5.lvs -rd input=x.gds
-  -rd schematic=x.sp -rd top=CELL`.
+## 6. Layout cells and PCells
 
-## 7. Validation (validation/README.md)
-Device VGS / gm within 10 % of the Baker C5 card; OSU NAND2 FO1 within ~15 % of the AMI5HS silicon databook (82 ps); ring
-oscillators ~2.4x faster than MOSIS measured (unpublished ring layout parasitics, same for every lot); Kerstetter rail-to-rail op-amp
-reproduced at tt/ff/ss; Butler 2005 Schottky bandgap reproduced (supply current 24.2 vs 23.75 uA, trim resistor 54.0 vs 54.8 kohm;
-TC bracket -860..+1230 ppm/C contains the measured -107..+500 ppm/C).
+- KLayout PCells (`libs.tech/klayout/pcells/fp5_pcells.py`): nmos, pmos
+  (W/L/fingers/tap), rpoly, rpoly2, rhr, cpoly, gring. The poly2/hi-res cells
+  use the poly2/p2con and hires layers.
+- Standard cells: 33 OSU core cells + TIEHI/TIELO + TAP/DECAP/ENDCAP. All
+  core cells DRC 0 and LVS match. PAD cells are intentionally not installed.
+- Tie cells are INVX1-derived; `synth.sh` maps constants to them.
 
-## 8. Known gaps vs a foundry PDK
-Measured foundry corners and statistical models (corners are +-3 sigma of MOSIS lot data; mismatch is an estimate);
-density / ESD / latch-up / reliability rules; antenna limits are GENERIC (MOSIS publishes none); parasitic extraction deck
-(OpenRCX tech); I/O pad cells characterized; noise models; resistor TCs and substrate PNP are estimates; Schottky is experimental;
-no poly2 / hi-res resistor PCells.
+## 7. Flows
+
+- Analog: ngspice. `.lib "$PDK_ROOT/fp5A/libs.tech/ngspice/fp5.lib" tt`, then
+  `.lib ".../fp5_passives.lib" devices` and `res_typ`.
+- Digital (LibreLane 3.x):
+  ```bash
+  make install PDK_ROOT=$HOME/pdks
+  PDK_ROOT=$HOME/pdks PDK=fp5A ./tools/run_librelane.sh \
+      examples/librelane/cnt8/config.yaml
+  ```
+  The wrapper runs the KLayout streamout and DRC, and skips the Magic LEF
+  antenna check and the power-grid checker. `examples/librelane/cnt8` is a
+  routed 8-bit counter; final GDS/DEF/ODB/SPEF are in `runs/RUN_*/final/`.
+- Legacy digital: `digital/flow/synth.sh` + `digital/flow/pnr.tcl` (Yosys /
+  OpenROAD). `pnr.tcl` now writes a GDS as well as DEF/ODB.
+- DRC: `klayout -b -r libs.tech/klayout/fp5A.drc -rd input=x.gds -rd report=x.lyrdb`.
+- LVS: `klayout -b -r libs.tech/klayout/fp5A.lvs -rd input=x.gds -rd schematic=x.sp -rd top=CELL`.
+
+## 8. Validation
+
+Device VGS/gm within 10 % of the Baker C5 card; OSU NAND2 FO1 within ~15 % of
+the AMI5HS silicon databook; ring oscillators ~2.4x faster than MOSIS measured
+(unpublished ring layout parasitics); Kerstetter op-amp reproduced at tt/ff/ss;
+Butler 2005 Schottky bandgap reproduced. See `validation/README.md`.
+
+## 9. Known gaps vs a foundry PDK
+
+- Not fabricable: no mask data, PCM, seal ring, pad opening, ESD/latch-up,
+  density, reliability or yield rules.
+- PAD GDS/ESD cells are not installed. No antenna-diode, SRAM/ROM,
+  scan/clock-gating/level-shifter cells; TAP/DECAP/ENDCAP are present.
+- PDN uses a metal1-rail + metal2/metal3 edge-ring topology. Power-grid
+  connectivity and IR drop run, but the ring is a first-order grid; a full
+  multi-strap PDN and calibrated VSRC locations are future work.
+- Digital Liberty views only tt/ff/ss at 25 C; no fs/sf, 3.3 V or temperature
+  corners.
+- OpenRCX rules are a first-order 3-metal template, not calibrated PEX.
+- Analog LVS is MOS-only; passives/diodes/PNP extraction is not yet in the
+  signoff deck.
+- Noise, self-heating, aging and passive mismatch are not characterized.
+- Magic cell views (`.mag`) are not generated; Magic technology and Netgen
+  setup are provided for manual/extraction use.

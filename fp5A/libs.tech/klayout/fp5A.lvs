@@ -1,0 +1,40 @@
+# FP5 KLayout LVS (research PDK). MOSIS SCMOS layer numbering (see layers.txt).
+# usage: klayout -b -r fp5A.lvs -rd input=x.gds -rd schematic=x.sp -rd top=CELL [-rd report=x.lvsdb] [-rd target=x_extracted.cir]
+# LibreLane passes topcell=; standalone use may pass top=.
+# Extracts: fp5n / fp5p (also matched to schematic model names nfet/pfet, nmos/pmos), W/L.
+# Passives/diodes/PNP are not yet extracted; this is a MOS-only signoff deck.
+top = (defined?($topcell) && $topcell && $topcell != "") ? $topcell : $top
+source($input, top)
+schematic(File.expand_path($schematic))
+report_lvs($report || ($input.sub(/\.\w+$/, "") + "_#{($top && !$top.empty?) ? $top : $topcell}.lvsdb"))
+target_netlist($target, write_spice(true), "Extracted by FP5 LVS") if $target
+deep
+nwell  = input(42, 0); active = input(43, 0); psel = input(44, 0); nsel = input(45, 0)
+poly   = input(46, 0); pcon = input(47, 0); acon = input(48, 0)
+m1 = input(49, 0); v1 = input(50, 0); m2 = input(51, 0); v2 = input(61, 0); m3 = input(62, 0)
+m1_lbl = labels(109, 0); m2_lbl = labels(110, 0); m3_lbl = labels(111, 0); m1_lbl2 = labels(49, 0)
+bulk = polygon_layer           # substrate: everything outside n-well
+gate  = poly & active
+sd    = active - gate
+pgate = gate & psel & nwell;  ngate = gate & nsel - nwell
+psd   = sd & psel & nwell;    nsd   = sd & nsel - nwell
+ntap  = sd & nsel & nwell;    ptap  = sd & psel - nwell
+extract_devices(mos4("fp5p"), { "SD" => psd, "G" => pgate, "tG" => poly, "W" => nwell })
+extract_devices(mos4("fp5n"), { "SD" => nsd, "G" => ngate, "tG" => poly, "W" => bulk })
+connect(psd, acon); connect(nsd, acon); connect(ntap, acon); connect(ptap, acon)
+connect(ntap, nwell); connect(ptap, bulk)
+connect(poly, pcon); connect(pcon, m1); connect(acon, m1)
+connect(m1, v1); connect(v1, m2); connect(m2, v2); connect(v2, m3)
+connect(m1, m1_lbl); connect(m1, m1_lbl2); connect(m2, m2_lbl); connect(m3, m3_lbl)
+# standard cells carry no substrate tap: the p-substrate is the global gnd net (tapped by well-tap / filler cells)
+connect_global(bulk, $subnet || "gnd")
+connect_implicit($subnet || "gnd")
+# schematic model names used by OSU / generic netlists
+same_device_classes("fp5n", "NFET"); same_device_classes("fp5p", "PFET")
+same_device_classes("fp5n", "NMOS"); same_device_classes("fp5p", "PMOS")
+netlist.simplify
+schematic.simplify
+align
+tolerance("fp5n", "W", :relative => 0.02); tolerance("fp5p", "W", :relative => 0.02)
+ok = compare
+puts ok ? "LVS MATCH: #{$top}" : "LVS MISMATCH: #{$top}"

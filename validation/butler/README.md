@@ -1,4 +1,4 @@
-# Butler 2005 Schottky bandgap on FP5 (PERSONAL USE)
+# Butler 2005 Schottky bandgap on FP5 (research PDK)
 
 Source: D. L. Butler (adv. R. J. Baker), *Low-Voltage Bandgap Reference Design Utilizing Schottky Diodes*, Boise State
 MS project report 2005 (+ MWSCAS 2005, doi:10.1109/MWSCAS.2005.1594470); MOSIS AMI 0.5 um lot T4BP.

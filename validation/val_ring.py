@@ -1,7 +1,8 @@
 """FP5 validation 2: 31-stage ring oscillator vs MOSIS lot T89Y measured 94.47 MHz (5 V). MOSIS ring cell geometry is not
 published in the report, so a range of inverter sizes is swept (MOSIS SCMOS rings use near-minimum devices)."""
-import subprocess, tempfile, re
-LIB = '/home/fpga/pdks/fp5/models/fp5.lib'
+import os, subprocess, tempfile, re
+PDK_ROOT = os.environ.get('FP5PDK', os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+LIB = os.path.join(PDK_ROOT, 'fp5A', 'libs.tech', 'ngspice', 'fp5.lib')
 def ring(c, wn, wp, n=31, vdd=5.0):
     st = ''.join(f'X{i} s{i} s{(i+1)%n} vdd iv\n' for i in range(n))
     d = f"""* ring

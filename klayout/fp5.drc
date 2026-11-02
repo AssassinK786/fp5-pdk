@@ -1,4 +1,4 @@
-# FP5 KLayout DRC (PERSONAL USE). Rules = public MOSIS SCMOS SUBM, lambda = 0.30 um, as encoded in the qflow Magic
+# FP5 KLayout DRC (research PDK). Rules = public MOSIS SCMOS SUBM, lambda = 0.30 um, as encoded in the qflow Magic
 # technology file SCN3ME_SUBM.30.tech (widths / spacings in lambda). Not the confidential AMI C5X rules.
 # usage: klayout -b -r fp5.drc -rd input=chip.gds -rd report=chip_drc.lyrdb [-rd top=CELL]
 source($input, $top)

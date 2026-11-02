@@ -1,4 +1,4 @@
-* FP5 (PERSONAL USE): AMI/onsemi C5 0.5 um passive and parasitic devices.
+* FP5 (research PDK): AMI/onsemi C5 0.5 um passive and parasitic devices.
 * Values: MOSIS lot report T89Y (median lot; agree with the medians of 105 C5 lots, see passives_stats.txt).
 * Temperature coefficients are NOT published in the MOSIS reports: TC1/TC2 below are typical textbook values (ESTIMATES).
 * Use BOTH: .lib "fp5_passives.lib" devices  AND  .lib "fp5_passives.lib" res_typ | res_low | res_high (resistors -3/+3 sigma, cap tracks resistor-independent:

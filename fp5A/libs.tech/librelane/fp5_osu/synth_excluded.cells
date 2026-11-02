@@ -1,0 +1,6 @@
+# Cells excluded from synthesis only.
+# FILL is a physical-only cell; PAD cells are not part of this release.
+FILL
+TAP
+DECAP
+ENDCAP

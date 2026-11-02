@@ -1,0 +1,16 @@
+# FP5A xschem setup
+# Usage: xschem --rcfile $PDK_ROOT/fp5A/libs.tech/xschem/xschemrc
+set pdk_dir [file normalize [file join [file dirname [info script]] ../..]]
+set symbol_dir [file join $pdk_dir libs.tech xschem symbols]
+set model_lib [file join $pdk_dir libs.tech ngspice fp5.lib]
+set passive_lib [file join $pdk_dir libs.tech ngspice fp5_passives.lib]
+
+if {[info exists XSCHEM_LIBRARY_PATH] && $XSCHEM_LIBRARY_PATH ne ""} {
+    set xschem_library_path "$symbol_dir:$XSCHEM_LIBRARY_PATH"
+} elseif {[info exists xschem_library_path] && $xschem_library_path ne ""} {
+    set xschem_library_path "$symbol_dir:$xschem_library_path"
+} else {
+    set xschem_library_path $symbol_dir
+}
+set XSCHEM_SYMBOL_PATH $symbol_dir
+set spice_netlist_commands "* FP5 0.5 um 5 V models\n.lib \"$model_lib\" tt\n.lib \"$passive_lib\" devices\n.lib \"$passive_lib\" res_typ\n"

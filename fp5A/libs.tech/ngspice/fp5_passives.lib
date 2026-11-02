@@ -1,0 +1,59 @@
+* FP5 (research PDK): AMI/onsemi C5 0.5 um passive and parasitic devices.
+* Values: MOSIS lot report T89Y (median lot; agree with the medians of 105 C5 lots, see passives_stats.txt).
+* Temperature coefficients are NOT published in the MOSIS reports: TC1/TC2 below are typical textbook values (ESTIMATES).
+* Use BOTH: .lib "fp5_passives.lib" devices  AND  .lib "fp5_passives.lib" res_typ | res_low | res_high (resistors -3/+3 sigma, cap tracks resistor-independent:
+*   cap_low / cap_high given inside the same sections as -3/+3 sigma). Relative 1-sigma lot spread (105 MOSIS C5 lots):
+*   poly 4.9 %, poly2 11.3 %, hi-res 11.8 %, n-well 1.0 %, n+ 1.8 %, p+ 1.9 %, poly-poly cap 19 %.
+.lib res_typ
+.param rsh_poly=22.5 rsh_poly2=40.1 rsh_hr=1070 rsh_nw=796 rsh_nd=87.7 rsh_pd=110.4 cpp_a=8.45e-16
+.endl res_typ
+.lib res_low
+.param rsh_poly=19.19 rsh_poly2=26.51 rsh_hr=691.2 rsh_nw=772.1 rsh_nd=82.96 rsh_pd=104.1 cpp_a=3.633e-16
+.endl res_low
+.lib res_high
+.param rsh_poly=25.81 rsh_poly2=53.69 rsh_hr=1449 rsh_nw=819.9 rsh_nd=92.44 rsh_pd=116.7 cpp_a=1.327e-15
+.endl res_high
+.lib devices
+* Resistors: X<name> a b r<type> w=<um> l=<um>   (R = Rsh * l / w, contact resistance added per end)
+.subckt rpoly a b w=2 l=20
+R1 a b {rsh_poly*l/w + 2*15.7/max(1,w/0.9)} tc1=0.0009 tc2=0
+.ends
+.subckt rpoly2 a b w=2 l=20
+R1 a b {rsh_poly2*l/w + 2*26.1/max(1,w/0.9)} tc1=0.0008 tc2=0
+.ends
+* high-resistance poly2 (PLY2_HR, hi-res implant)
+.subckt rhr a b w=2 l=20
+R1 a b {rsh_hr*l/w} tc1=-0.0012 tc2=0
+.ends
+.subckt rnwell a b sub w=4 l=40
+R1 a b {rsh_nw*l/w} tc1=0.0025 tc2=0
+D1 sub a dnwell area={w*l*0.5e-12} pj={(w+l)*1e-6}
+D2 sub b dnwell area={w*l*0.5e-12} pj={(w+l)*1e-6}
+.ends
+.subckt rndiff a b w=2 l=20
+R1 a b {rsh_nd*l/w + 2*61.8/max(1,w/0.9)} tc1=0.0015 tc2=0
+.ends
+.subckt rpdiff a b w=2 l=20
+R1 a b {rsh_pd*l/w + 2*150.8/max(1,w/0.9)} tc1=0.0015 tc2=0
+.ends
+* poly1-poly2 capacitor: area 0.845 fF/um^2 (POLY2 over POLY); bottom plate (poly1) to substrate 0.086 fF/um^2
+.subckt cpoly top bot sub w=20 l=20
+C1 top bot {cpp_a*w*l}
+C2 bot sub {0.086e-15*w*l + 2*(w+l)*0.0e-18}
+.ends
+* junction diodes (areas in m^2, perimeters in m when instanced directly)
+.model dnwell d (is=1e-16 cj=9.0e-5 mj=0.5 pb=0.7 cjsw=0 bv=15)
+.model dnplus d (is=1e-16 cj=4.15e-4 mj=0.45 pb=0.99 cjsw=3.3e-10 mjsw=0.12 pbsw=0.1 bv=10)
+.model dpplus d (is=1e-16 cj=7.23e-4 mj=0.50 pb=0.95 cjsw=2.0e-10 mjsw=0.30 pbsw=0.99 bv=10)
+* vertical substrate PNP (P+ emitter / n-well base / p-substrate collector): ESTIMATE, not foundry data.
+* is per 1 um^2 of emitter; scale with area factor = emitter area in um^2. Beta ~10-20 typical for C5-class wells.
+.model c5pnp pnp (is=2e-18 bf=15 br=0.1 nf=1.0 vaf=50 ikf=1e-4 rb=500 re=20 rc=100 cje=7.2e-16 cjc=9e-17 tf=1e-9 xti=3 eg=1.11)
+* Schottky (metal1 directly on n-well, ohmic n-well contact through n+), EXPERIMENTAL, not an SCMOS device.
+* Unit device = one 0.5 x 0.5 um metal1-to-n-well contact (0.25 um^2); use the diode area factor for N parallel contacts
+* (ngspice: D1 a k fp5_schottky 8  -> IS x8, RS / 8). Fitted 2026-10-23 to D. L. Butler, Boise State MS report 2005
+* (MOSIS 0.5 um lot T4BP), Fig 4.2 measured I-V (rms 3.7 mV, 0.25-0.60 V) and measured dV/dT = -0.56 mV/C at 3-10 uA
+* (0-70 C): n = 1.07, Rs = 2.58 kohm, Is = 4.37e-11 A, EG (effective barrier) = 0.439 eV, XTI = 2.
+* Butler's own appendix model (IS=7e-18 N=0.43 RS=2.2k) has an unphysical n < 1. CJO estimated from the n-well
+* junction density (dnwell cj 9e-5 F/m2); reverse breakdown not characterized. Fit: validation/butler/fit_schottky.py, fit_tc.py
+.model fp5_schottky d (is=4.365e-11 n=1.07 rs=2575 eg=0.439 xti=2 cjo=2.25e-17 vj=0.44 m=0.5)
+.endl devices

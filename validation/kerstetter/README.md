@@ -1,4 +1,4 @@
-# Kerstetter C5 rail-to-rail op-amp on FP5 (PERSONAL USE, do not git commit)
+# Kerstetter C5 rail-to-rail op-amp on FP5 (research PDK)
 
 Source: J. Kerstetter, UNLV EE420 course project (2019), `~/ext/cmosedu/kerstetter420courseProject.pdf`
 (Fig 1 BMR + start-up, Fig 4 bias circuit, Fig 8 op-amp; Tables 2 and 3).

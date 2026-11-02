@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PERSONAL USE. Fit a physical diode model (n >= 1) to Butler 2005 Fig 4.2 (MOSIS 0.5 um, metal1 on n-well, 0.25 um^2).
+# research PDK. Fit a physical diode model (n >= 1) to Butler 2005 Fig 4.2 (MOSIS 0.5 um, metal1 on n-well, 0.25 um^2).
 # V = n Vt ln(I/Is + 1) + I Rs is explicit in V, so fit in the V domain by grid search (no scipy needed).
 import numpy as np
 d = np.loadtxt('fig42_digitized.csv', delimiter=',', comments='#'); V, I = d[:, 0], d[:, 1] * 1e-6

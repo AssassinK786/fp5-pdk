@@ -1,0 +1,20 @@
+# FP5A Magic startup file
+# Use: magic -dnull -noconsole -rcfile $PDK_ROOT/fp5A/libs.tech/magic/fp5A.magicrc
+# The technology is the public MOSIS SCMOS SUBM 0.30 um stack, adapted from
+# the qflow SCN3ME_SUBM.30 technology.
+
+set pdk_root $env(PDK_ROOT)
+set pdk $env(PDK)
+
+tech load $pdk_root/$pdk/libs.tech/magic/fp5A.tech -noprompt
+scalegrid 1 4
+set GND gnd
+set VDD vdd
+
+drc euclidean on
+drc off
+
+# Keep the PDK setup in one place for both standalone and LibreLane runs.
+if {[file exists $pdk_root/$pdk/libs.tech/magic/fp5A.tcl]} {
+    source $pdk_root/$pdk/libs.tech/magic/fp5A.tcl
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PERSONAL USE. Choose EG (SPICE diode) so dV/dT at 3/5/10 uA (0 -> 70 C) averages -0.56 mV/C (Butler 2005 measured), XTI = 2.
+# research PDK. Choose EG (SPICE diode) so dV/dT at 3/5/10 uA (0 -> 70 C) averages -0.56 mV/C (Butler 2005 measured), XTI = 2.
 import numpy as np
 f = dict(l.split() for l in open('fit_result.txt')); n, rs, Is0 = float(f['n']), float(f['rs']), float(f['is'])
 k_q = 8.617333e-5; T0 = 300.15; XTI = 2.0

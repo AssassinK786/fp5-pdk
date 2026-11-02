@@ -1,0 +1,3 @@
+# Cells excluded from synthesis and place-and-route.
+# FILL is inserted explicitly by the fill step.
+FILL

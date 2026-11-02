@@ -1,4 +1,7 @@
 # FP5 digital flow environment (source me)
-export FP5PDK=$HOME/pdks/fp5
-export FP5_LIB=$FP5PDK/digital/lib/fp5_osu_tt_5v.lib
-export FP5_LEF=$FP5PDK/digital/lef/fp5_osu.lef
+# Works from any checkout: the PDK root is inferred, not hard-coded.
+FP5_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
+export FP5PDK=${FP5PDK:-$FP5_ROOT}
+export FP5_LIB=$FP5PDK/fp5A/libs.ref/fp5_osu/lib/fp5_osu__tt_5v00_25c.lib
+export FP5_LEF=$FP5PDK/fp5A/libs.ref/fp5_osu/lef/fp5_osu.lef
+export FP5_TECH_LEF=$FP5PDK/fp5A/libs.ref/fp5_osu/lef/fp5_osu_tech.lef

@@ -1,0 +1,8 @@
+* FP5A physical cells: well/substrate tap and decap
+.subckt TAP vdd gnd
+.ends
+.subckt DECAP vdd gnd
+C1 vdd gnd 26.6f
+.ends
+.subckt ENDCAP vdd gnd
+.ends

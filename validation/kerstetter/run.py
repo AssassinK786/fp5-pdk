@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Kerstetter EE420 (2019) C5 rail-to-rail op-amp: netlist generator + runner.
-PERSONAL USE (FP5). Usage: python3 run.py  -> writes kerstetter_opamp.sp, decks in runs/, results.txt"""
+research PDK (FP5). Usage: python3 run.py  -> writes kerstetter_opamp.sp, decks in runs/, results.txt"""
 import subprocess, re, os, itertools
 D=os.path.dirname(os.path.abspath(__file__)); os.makedirs(D+'/runs',exist_ok=True)
+PDK_ROOT=os.environ.get('FP5PDK', os.path.abspath(os.path.join(D,'..','..')))
+FP5_LIB=os.path.join(PDK_ROOT,'fp5A','libs.tech','ngspice','fp5.lib')
 
 def M(name,d,g,s,b,typ,w,l,m=1):
     # typ 'n'/'p'; model names via {N}/{P} placeholders; junction geometry W*1.5u
@@ -91,7 +93,7 @@ with open(D+'/kerstetter_opamp.sp','w') as f:
 
 def deck(lib,vdd,load,opt='gmin=1e-12'):
     N,P=('NMOS','PMOS') if lib=='baker' else ('fp5n','fp5p')
-    inc='.include "/home/fpga/ext/mosis_cards/c5_baker/c5_baker.lib"' if lib=='baker' else f'.lib "/home/fpga/pdks/fp5/models/fp5.lib" {lib}'
+    inc='.include "/home/fpga/ext/mosis_cards/c5_baker/c5_baker.lib"' if lib=='baker' else f'.lib "{FP5_LIB}" {lib}'
     c=core().replace('{N}',N).replace('{P}',P)
     ld="RL vout 0 1k\nCL vout 0 100p" if load else ""
     return f"""* kerstetter {lib} vdd={vdd} load={load}

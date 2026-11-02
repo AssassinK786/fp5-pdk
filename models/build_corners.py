@@ -1,4 +1,4 @@
-"""FP5 (PERSONAL USE): BSIM3 corners for AMI/onsemi C5 0.5 um from public MOSIS lot data.
+"""FP5 (research PDK): BSIM3 corners for AMI/onsemi C5 0.5 um from public MOSIS lot data.
 Typical = MOSIS run T89Y (Jan 2009, median lot: Idss N 461 / P -246 uA/um, Vth 0.67 / -0.91 V, tox 141 A).
 Corner targets = median +- 3 sigma of 105 unique C5 lots (MOSIS parametric reports, ~/ext/mosis_cards/_index_reports.tsv):
   sigma: Vth_short N 24 mV, P 15 mV; Idss N 9.8, P 9.4 uA/um (W/L 15/0.6, |Vgs|=|Vds|=5 V); tox 1.6 A.
@@ -6,7 +6,10 @@ Fit, per device and corner: TOX moved +-3 sigma (ff: thin, ss: thick; fs/sf keep
 MOSIS short-channel test device (W/L 15/0.6) hits typ + delta(Vth) and typ + delta(Idss); delta-based, so the Vth definition
 cancels. Writes c5.lib with .lib sections tt ff ss fs sf (models fp5n / fp5p) for ngspice (LEVEL 8 = BSIM3v3.1)."""
 import os, re
-exec(open(os.path.expanduser('~/fpga-projects/node_fits/gatearray_cmp/ga_cmp.py')).read().split("cp8d = card")[0])
+HELPER = os.environ.get('FP5_BUILD_HELPER', os.path.expanduser('~/fpga-projects/node_fits/gatearray_cmp/ga_cmp.py'))
+if not os.path.exists(HELPER):
+    raise SystemExit(f'FP5_BUILD_HELPER not found: {HELPER}\nSet FP5_BUILD_HELPER to the gatearray_cmp helper, or use the checked-in corner cards.')
+exec(open(HELPER).read().split("cp8d = card")[0])
 raw = open('t89y_raw.lib').read()
 blk = {t: re.search(rf'(?is)\.model cmos{t} .*?\)', raw).group(0) for t in 'np'}
 def setp(b, k, v): return re.sub(rf'(?im)(\b{k}\s*=\s*)([-0-9.eE+]+)', lambda g: g.group(1) + f'{v:.6g}', b, count=1)
@@ -35,7 +38,7 @@ for c, (sn, sp, so) in CORN.items():
         b[t] = bb
         print(f'{c} {t}: Vt {vt:.3f} (tgt {tv:.3f}) Idss {idd:.1f} (tgt {ti:.1f}) TOX {getp(bb,"TOX")*1e10:.1f} A', flush=True)
     out[c] = b
-L = ['* FP5 (PERSONAL USE, not a foundry deliverable): AMI/onsemi C5 0.5 um BSIM3 corners. See build_corners.py.',
+L = ['* FP5 (research PDK, not a foundry deliverable): AMI/onsemi C5 0.5 um BSIM3 corners. See build_corners.py.',
      '* Typical = MOSIS lot T89Y (2009). Corners = +-3 sigma of 105 MOSIS C5 lots. Vdd 5 V (3.3 V usable). Drawn L >= 0.6 um.',
      '* Use: .lib "fp5.lib" tt   (or ff ss fs sf); devices fp5n / fp5p (4-terminal), give AS/AD/PS/PD for junction caps.']
 for c, b in out.items():

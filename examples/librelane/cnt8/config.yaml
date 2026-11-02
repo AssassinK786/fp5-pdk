@@ -1,0 +1,19 @@
+DESIGN_NAME: cnt8
+VERILOG_FILES: dir::src/cnt8.v
+CLOCK_PORT: clk
+CLOCK_PERIOD: 30
+FP_CORE_UTIL: 15
+PL_TARGET_DENSITY_PCT: 50
+
+# KLayout is the current signoff/streamout tool.
+RUN_IRDROP_REPORT: true
+RUN_LVS: false
+RUN_MAGIC_STREAMOUT: false
+RUN_MAGIC_WRITE_LEF: false
+RUN_MAGIC_DRC: false
+RUN_KLAYOUT_XOR: false
+RUN_KLAYOUT_STREAMOUT: true
+RUN_KLAYOUT_DRC: true
+
+# Edge-ring PDN: no metal2/metal3 straps through the cell rows.
+PDN_CFG: dir::../../../fp5A/libs.tech/librelane/pdn_cfg_ring.tcl

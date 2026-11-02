@@ -1,7 +1,8 @@
 """FP5 validation 1: small-signal device parameters vs Kerstetter (UNLV EE420 2019, C5 op-amp, Baker C5 card), 5 V, 27 C.
 NMOS 27u/0.6u, PMOS 54u/0.6u: VGS at ID = 5 uA (no body effect), gm at 10 uA, ro / lambda at 5 uA (VDS = 1 V)."""
-import subprocess, tempfile, re, numpy as np
-LIB = '/home/fpga/pdks/fp5/models/fp5.lib'
+import os, subprocess, tempfile, re, numpy as np
+PDK_ROOT = os.environ.get('FP5PDK', os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+LIB = os.path.join(PDK_ROOT, 'fp5A', 'libs.tech', 'ngspice', 'fp5.lib')
 def run(deck):
     with tempfile.TemporaryDirectory() as td:
         open(f'{td}/a.sp', 'w').write(deck); o = subprocess.run(['ngspice', '-b', 'a.sp'], cwd=td, capture_output=True, text=True).stdout

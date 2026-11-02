@@ -1,6 +1,9 @@
 """FP5: median passive parameters of AMI C5 from MOSIS lot reports (sheet R, contact R, width variation, capacitances)."""
 import os, re, html, glob, statistics as st, collections
-W = os.path.expanduser('~/ext/mosis_cards/wayback_params')
+W = os.environ.get('FP5_MOSIS_PARAMS', os.path.expanduser('~/ext/mosis_cards/wayback_params'))
+if not os.path.isdir(W):
+    raise SystemExit(f'FP5_MOSIS_PARAMS not found: {W}\nThis is a build-time input, not needed to use the checked-in passives.')
+
 acc = collections.defaultdict(list)
 def table(t, title):
     out = []

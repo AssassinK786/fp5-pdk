@@ -1,0 +1,76 @@
+# FP5 KLayout DRC (research PDK). Rules = public MOSIS SCMOS SUBM, lambda = 0.30 um, as encoded in the qflow Magic
+# technology file SCN3ME_SUBM.30.tech (widths / spacings in lambda). Not the confidential AMI C5X rules.
+# usage: klayout -b -r fp5A.drc -rd input=chip.gds -rd report=chip_drc.lyrdb [-rd top=CELL]
+# LibreLane passes topcell=; standalone use may pass top=.
+top = (defined?($topcell) && $topcell && $topcell != "") ? $topcell : $top
+source($input, top)
+report("FP5 DRC (SCMOS SUBM, lambda 0.3)", $report)
+L = 0.30
+nwell = input(42, 0); active = input(43, 0); psel = input(44, 0); nsel = input(45, 0)
+poly = input(46, 0); pcon = input(47, 0); acon = input(48, 0); poly2 = input(56, 0); p2con = input(55, 0)
+m1 = input(49, 0); v1 = input(50, 0); m2 = input(51, 0); v2 = input(61, 0); m3 = input(62, 0); glass = input(52, 0)
+hires = input(34, 0)
+gate = poly & active
+ndiff = active & nsel; pdiff = active & psel
+# well
+nwell.width(12*L).output("W.1", "nwell width < 12 lambda")
+nwell.space(6*L).output("W.2", "nwell space < 6 lambda (same potential)")
+ndiff.not(nwell).separation(nwell, 6*L).output("W.3", "n+ active to nwell < 6 lambda")
+pdiff.and(nwell).enclosed(nwell, 6*L).output("W.4", "nwell enclosure of p+ active < 6 lambda")
+# active
+active.width(3*L).output("A.1", "active width < 3 lambda")
+active.space(3*L).output("A.2", "active space < 3 lambda")
+# A.3 (n+ to p+ across the well, 12 lambda) is implied by W.3 + W.4 (6 + 6 lambda); not checked separately
+# poly
+poly.width(2*L).output("P.1", "poly width < 2 lambda")
+poly.space(3*L).output("P.2", "poly space < 3 lambda")
+gate.width(2*L).output("P.3", "gate length < 2 lambda")
+poly.not(active).not_interacting(active).separation(active, 1*L).output("P.4", "field poly to active < 1 lambda")
+# P.5 / P.6 as edge checks: gate edges on the poly boundary face source/drain, edges on the active boundary face the end cap
+(gate.edges & poly.edges).extended_out(3*L).not(active).output("P.5", "active (source/drain) extension beyond gate < 3 lambda")
+(gate.edges & active.edges).extended_out(2*L).not(poly).output("P.6", "poly end cap beyond active < 2 lambda")
+# select
+psel.width(2*L).output("S.1", "pselect width < 2 lambda"); nsel.width(2*L).output("S.1n", "nselect width < 2 lambda")
+psel.enclosing(pdiff, 2*L).output("S.2", "pselect enclosure of active < 2 lambda")
+nsel.enclosing(ndiff, 2*L).output("S.2n", "nselect enclosure of active < 2 lambda")
+(psel & nsel).output("S.3", "pselect overlaps nselect")
+# contacts (cut 2x2 lambda, space 3, enclosure 1 by active/poly/metal1)
+cont = acon + pcon
+cont.width(2*L).output("C.1", "contact size < 2 lambda"); cont.space(3*L).output("C.2", "contact space < 3 lambda")
+active.enclosing(acon, 1*L).output("C.3", "active enclosure of contact < 1 lambda")
+poly.enclosing(pcon, 1*L).output("C.4", "poly enclosure of poly contact < 1 lambda")
+acon.not(active).output("C.5", "active contact outside active"); pcon.not(poly).output("C.6", "poly contact outside poly")
+pcon.separation(active, 2*L).output("C.7", "poly contact to active < 2 lambda")
+acon.separation(gate, 2*L).output("C.8", "active contact to gate < 2 lambda")
+m1.enclosing(cont, 1*L).output("C.9", "metal1 enclosure of contact < 1 lambda")
+# metal1 / via1 / metal2 / via2 / metal3
+m1.width(3*L).output("M1.1", "metal1 width < 3 lambda"); m1.space(3*L).output("M1.2", "metal1 space < 3 lambda")
+v1.width(2*L).output("V1.1", "via1 size < 2 lambda"); v1.space(3*L).output("V1.2", "via1 space < 3 lambda")
+m1.enclosing(v1, 1*L).output("V1.3", "metal1 enclosure of via1 < 1 lambda"); m2.enclosing(v1, 1*L).output("V1.4", "metal2 enclosure of via1 < 1 lambda")
+v1.separation(cont, 2*L).output("V1.5", "via1 to contact < 2 lambda")
+m2.width(3*L).output("M2.1", "metal2 width < 3 lambda"); m2.space(3*L).output("M2.2", "metal2 space < 3 lambda")
+v2.width(2*L).output("V2.1", "via2 size < 2 lambda"); v2.space(3*L).output("V2.2", "via2 space < 3 lambda")
+m2.enclosing(v2, 1*L).output("V2.3", "metal2 enclosure of via2 < 1 lambda"); m3.enclosing(v2, 2*L).output("V2.4", "metal3 enclosure of via2 < 2 lambda")
+v2.separation(v1, 2*L).output("V2.5", "via2 to via1 < 2 lambda")
+m3.width(5*L).output("M3.1", "metal3 width < 5 lambda"); m3.space(3*L).output("M3.2", "metal3 space < 3 lambda")
+# poly2 (capacitor top plate / resistor)
+poly2.width(5*L).output("E.1", "poly2 width < 5 lambda"); poly2.space(3*L).output("E.2", "poly2 space < 3 lambda")
+p2con.width(2*L).output("E.3", "poly2 contact size < 2 lambda"); poly2.enclosing(p2con, 1*L).output("E.4", "poly2 enclosure of contact < 1 lambda")
+poly2.separation(cont, 2*L).output("E.5", "poly2 to contact < 2 lambda")
+p2con.not(m1).output("E.6", "poly2 contact not covered by metal1")
+m1.enclosing(p2con, 1*L).output("E.7", "metal1 enclosure of poly2 contact < 1 lambda")
+# high-res poly2 resistor implant (estimated rules; no public foundry deck)
+hires.width(5*L).output("HR.1", "hires width < 5 lambda (estimated)")
+hires.space(3*L).output("HR.2", "hires space < 3 lambda (estimated)")
+hires.not(poly2).output("HR.3", "hires outside poly2 (estimated)")
+glass.width(10*L).output("G.1", "glass opening width < 10 lambda")
+# vias must sit on both metals
+v1.not(m1).output("V1.6", "via1 not covered by metal1"); v1.not(m2).output("V1.7", "via1 not covered by metal2")
+v2.not(m2).output("V2.6", "via2 not covered by metal2"); v2.not(m3).output("V2.7", "via2 not covered by metal3")
+cont.not(m1).output("C.10", "contact not covered by metal1")
+
+# antenna (GENERIC limits, not foundry data: MOSIS SCMOS publishes none; typical 0.5 um values): metal area / gate area
+connect(gate, poly); connect(poly, pcon); connect(pcon, m1); connect(m1, v1); connect(v1, m2); connect(m2, v2); connect(v2, m3)
+antenna_check(gate, m1, 400.0).output("ANT.1", "metal1 antenna ratio > 400 (generic)")
+antenna_check(gate, m2, 400.0).output("ANT.2", "metal2 antenna ratio > 400 (generic)")
+antenna_check(gate, m3, 400.0).output("ANT.3", "metal3 antenna ratio > 400 (generic)")

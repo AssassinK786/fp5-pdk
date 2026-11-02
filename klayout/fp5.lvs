@@ -1,4 +1,4 @@
-# FP5 KLayout LVS (PERSONAL USE). MOSIS SCMOS layer numbering (see layers.txt).
+# FP5 KLayout LVS (research PDK). MOSIS SCMOS layer numbering (see layers.txt).
 # usage: klayout -b -r fp5.lvs -rd input=x.gds -rd schematic=x.sp -rd top=CELL [-rd report=x.lvsdb] [-rd target=x_extracted.cir]
 # Extracts: fp5n / fp5p (also matched to schematic model names nfet/pfet, nmos/pmos), W/L/AS/AD/PS/PD.
 source($input, $top)

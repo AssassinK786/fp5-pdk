@@ -1,0 +1,12 @@
+FP5A - free 0.5 um 5 V research PDK
+
+This repository contains:
+  * Original FP5A models, decks, documentation and scripts.
+  * OSU 0.5 um standard-cell views derived from the qflow project.
+    The qflow/OSU files retain their original copyright and license terms;
+    see the qflow project for details.
+  * Public MOSIS parametric data used as a reference. No confidential
+    foundry data is included.
+
+The original FP5A work is released under the Apache License, Version 2.0.
+Third-party material remains under its own license.

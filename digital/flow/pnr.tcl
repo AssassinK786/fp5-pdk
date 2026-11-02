@@ -39,4 +39,5 @@ if {![info exists ::env(NO_DR)]} {
   write_def $::env(OUT)/$::env(TOP).def
 }
 write_db $::env(OUT)/$::env(TOP).odb
+write_gds $::env(OUT)/$::env(TOP).gds
 exit
