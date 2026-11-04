@@ -9,6 +9,10 @@ dict set ::env(LIB) "*_ff_5v50_25c" \
     "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lib/fp5_osu__ff_5v50_25c.lib"
 dict set ::env(LIB) "*_ss_4v50_25c" \
     "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lib/fp5_osu__ss_4v50_25c.lib"
+dict set ::env(LIB) "*_fs_5v00_25c" \
+    "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lib/fp5_osu__fs_5v00_25c.lib"
+dict set ::env(LIB) "*_sf_5v00_25c" \
+    "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lib/fp5_osu__sf_5v00_25c.lib"
 
 set ::env(CELL_LEFS) \
     "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lef/$::env(STD_CELL_LIBRARY).lef"

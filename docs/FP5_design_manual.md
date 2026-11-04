@@ -107,12 +107,22 @@ Butler 2005 Schottky bandgap reproduced. See `validation/README.md`.
   density, reliability or yield rules.
 - PAD GDS/ESD cells are not installed. No antenna-diode, SRAM/ROM,
   scan/clock-gating/level-shifter cells; TAP/DECAP/ENDCAP are present.
-- PDN uses a metal1-rail + metal2/metal3 edge-ring topology. Power-grid
-  connectivity and IR drop run, but the ring is a first-order grid; a full
-  multi-strap PDN and calibrated VSRC locations are future work.
-- Digital Liberty views only tt/ff/ss at 25 C; no fs/sf, 3.3 V or temperature
-  corners.
-- OpenRCX rules are a first-order 3-metal template, not calibrated PEX.
+- PDN uses a metal1-rail + metal2/metal3 edge-ring topology with VSRC bumps
+  pinned on the die-edge ring (`cnt8/vsrc/`). With sources pinned, worst-case
+  VDD IR drop is ~1.47 V (29%) at 35% util — the ring starves 60 um-pitch
+  rails. Vertical metal3 straps (the proven sky130/gf180 pattern — metal3 is
+  HORIZONTAL so stripes run vertically over the rails, and no OSU cell uses
+  m3) cut it to ~0.98 V LVS-clean, but the m1->m3 via stacks at strap ends
+  violate KLayout V2.4 (m3 enclosure of via2 = 2 lambda): the only m3 width
+  that fits the 3 um routing pitch can't enclose the stack. See
+  `cnt8/PDN_NOTES.md` + `pdn_cfg_straps_experiment.tcl`.
+- Digital Liberty views: tt/ff/ss fully characterized at 25 C, plus fs/sf at
+  5 V derived by `digital/char_corners.py` (uniform delay/power derate from a
+  measured INVX1 FO1 ratio — corner-consistent magnitude, not per-cell
+  rechar). No 3.3 V or temperature corners yet.
+- OpenRCX rules are calibrated to `tech/wire_rc.txt` (MOSIS T89Y) — sheet R
+  and isolated-wire C match exactly; lateral coupling uses a w/(w+sep)
+  analytic model. Regenerate with `validation/pex/gen_rcx.py`.
 - Analog LVS is MOS-only; passives/diodes/PNP extraction is not yet in the
   signoff deck.
 - Noise, self-heating, aging and passive mismatch are not characterized.

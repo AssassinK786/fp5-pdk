@@ -7,7 +7,11 @@ PL_TARGET_DENSITY_PCT: 50
 
 # KLayout is the current signoff/streamout tool.
 RUN_IRDROP_REPORT: true
-RUN_LVS: false
+# Voltage-source bumps on the die-edge PDN ring (left/right = VDD, top/bottom = GND).
+VSRC_LOC_FILES:
+  vdd: dir::vsrc/vdd.loc
+  gnd: dir::vsrc/gnd.loc
+RUN_LVS: true
 RUN_MAGIC_STREAMOUT: false
 RUN_MAGIC_WRITE_LEF: false
 RUN_MAGIC_DRC: false

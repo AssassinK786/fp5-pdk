@@ -28,14 +28,14 @@ library(fp5_osu_ss_4v50_25c) {
   output_threshold_pct_rise : 50;
   output_threshold_pct_fall : 50;
   nom_process : 1;
-  nom_voltage : 5;
-  voltage_map (vdd, 5.0);
+  nom_voltage : 4.5;
+  voltage_map (vdd, 4.5);
   voltage_map (gnd, 0.0);
   default_max_transition : 2.0 ; /* added by FP5: OSU lib has none; needed by CTS / repair */
   nom_temperature : 25;
   operating_conditions ( typical ) {
      process : 1;
-     voltage : 5;
+     voltage : 4.5;
      temperature : 25;
   }
   default_operating_conditions : typical;

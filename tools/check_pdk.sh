@@ -59,6 +59,16 @@ klayout -b -zz -r "$P/libs.tech/klayout/lvs/$PDK.lvs" \
   -rd report="$TMP/nand2.lvsdb" > "$TMP/nand2.lvs.log" 2>&1
 grep -q "LVS MATCH" "$TMP/nand2.lvs.log" || { echo "LVS failed"; fail=1; }
 
+echo "== Liberty voltage metadata"
+declare -A EXPECT=( [fp5_osu__tt_5v00_25c]=5 [fp5_osu__ff_5v50_25c]=5.5 [fp5_osu__ss_4v50_25c]=4.5 )
+for lib in "${!EXPECT[@]}"; do
+  f="$P/libs.ref/fp5_osu/lib/$lib.lib"
+  check_file "$f"
+  v=${EXPECT[$lib]}
+  grep -q "nom_voltage : $v;" "$f" || { echo "BAD nom_voltage in $f (want $v)"; fail=1; }
+  grep -qE "voltage_map \(vdd, ${v}(\.0)?\);" "$f" || { echo "BAD voltage_map in $f (want $v)"; fail=1; }
+done
+
 echo "== ngspice model sanity"
 cat > "$TMP/dev.sp" <<SPICE
 .lib "$P/libs.tech/ngspice/fp5.lib" tt
